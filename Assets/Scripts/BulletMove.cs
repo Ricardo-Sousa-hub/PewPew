@@ -6,6 +6,7 @@ public class BulletMove : MonoBehaviour
 {
     private Rigidbody rb;
     public float speed;
+    public float damage;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +17,8 @@ public class BulletMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+            
     }
+
+    
 }

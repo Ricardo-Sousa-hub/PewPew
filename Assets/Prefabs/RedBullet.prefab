@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 3944354677508389854}
   - component: {fileID: 4321431389539236185}
   - component: {fileID: -5603179429932772689}
-  - component: {fileID: 5565740388562591753}
+  - component: {fileID: 5969483578151790995}
   m_Layer: 0
-  m_Name: Bullet
-  m_TagString: Bullet
+  m_Name: RedBullet
+  m_TagString: RedBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 21912e52f8bb93448aff94f0491f89d6, type: 2}
+  - {fileID: 2100000, guid: 82d62ce3a98ceaf42b132d6f20ed2193, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -116,7 +116,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5565740388562591753
+--- !u!114 &5969483578151790995
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,4 +129,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1600
-  damage: 10
+  damage: 20
+  _collider: {fileID: 1977398794224299985, guid: 289a7f3ca8bf41343b24e7c9c150fdb3, type: 3}
