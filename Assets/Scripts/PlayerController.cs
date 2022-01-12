@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    void Animacoes(float horizontal, float vertical)
+    void Animacoes(float vertical, float horizontal)
     {
         animator.SetFloat("Forward", vertical);
         animator.SetFloat("Turn", horizontal);
@@ -59,16 +59,8 @@ public class PlayerController : MonoBehaviour
         horizontal = horizontal * Time.deltaTime * moveSpeed;
         vertical = vertical * Time.deltaTime * moveSpeed;
 
-        if (lookPos.z > 0)
-        {
-            movement = new Vector3(horizontal, 0, vertical);
-            Animacoes(horizontal, vertical);
-        }
-        else
-        {
-            movement = new Vector3(-horizontal, 0, vertical);
-            Animacoes(-horizontal, vertical);
-        }
+        movement = new Vector3(horizontal, 0, vertical);
+        Animacoes(vertical, horizontal);
 
         transform.Translate(movement);
     }

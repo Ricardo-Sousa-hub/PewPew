@@ -6,7 +6,8 @@ public class Gun : MonoBehaviour
 {
     public float fireRate;
     public float shootSpread;
-    public float magazine;
+    public int magazine;
+    public float damage;
 
     // Start is called before the first frame update
     void Start()
