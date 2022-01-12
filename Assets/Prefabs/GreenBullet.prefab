@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 2405196652929276381}
   m_Layer: 0
   m_Name: GreenBullet
-  m_TagString: Untagged
+  m_TagString: GreenBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

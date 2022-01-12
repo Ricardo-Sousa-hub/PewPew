@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 2405196652929276381}
   m_Layer: 0
   m_Name: RedBullet
-  m_TagString: Untagged
+  m_TagString: RedBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,4 +161,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1600
-  damage: 20
+  damage: 30

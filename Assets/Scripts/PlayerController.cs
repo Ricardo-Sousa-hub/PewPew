@@ -22,10 +22,12 @@ public class PlayerController : MonoBehaviour
 
     public float showFireRate;
 
+    public float life;
     // Start is called before the first frame update
     void Start()
     {
         armaSelecionada = 0;
+        life = 100;
     }
 
 
@@ -35,6 +37,7 @@ public class PlayerController : MonoBehaviour
         LookMousePos();
         Shoot();
         selecionarArma();
+        verificarVida();
     }
 
 
@@ -43,6 +46,13 @@ public class PlayerController : MonoBehaviour
         Move();
     }
 
+    void verificarVida()
+    {
+        if(life == 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Animacoes(float vertical, float horizontal)
     {
@@ -60,9 +70,10 @@ public class PlayerController : MonoBehaviour
         vertical = vertical * Time.deltaTime * moveSpeed;
 
         movement = new Vector3(horizontal, 0, vertical);
-        Animacoes(vertical, horizontal);
+        transform.Translate(movement, Space.World); //Space world, em relação ao mundo
 
-        transform.Translate(movement);
+        Vector3 local = transform.InverseTransformDirection(movement); // passar movement do mundo para local
+        Animacoes(local.z, local.x);
     }
 
 
@@ -89,6 +100,7 @@ public class PlayerController : MonoBehaviour
         {
             guns[0].SetActive(true);
             guns[armaSelecionada].SetActive(false);
+
             armaSelecionada = 0;
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
