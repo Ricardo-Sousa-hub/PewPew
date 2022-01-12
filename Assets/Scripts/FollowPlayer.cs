@@ -5,6 +5,10 @@ using UnityEngine;
 public class FollowPlayer : MonoBehaviour
 {
     public GameObject player;
+    //public Vector3 targetOS;
+    //public float speedCamera;
+
+    public float alturaCamera;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +19,8 @@ public class FollowPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(player.transform.position.x, 9.2f, player.transform.position.z);
+        //transform.position = Vector3.Lerp(transform.position, player.transform.position + targetOS, speedCamera * Time.deltaTime);
+
+        transform.position = new Vector3(player.transform.position.x, alturaCamera, player.transform.position.z - 5);
     }
 }

@@ -5,65 +5,122 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
-    private Rigidbody rb;
 
-    float horizontal;
-    float vertical;
+    Vector3 movement;
+    Vector3 lookPos;
 
-    private Vector3 movement;
+    public Animator animator;
 
-    private Camera mainCamera;
+    public List<int> ammoByType;
 
-    public Animator anim;
+    private float nextFire;
+    public Transform shootSpawn;
+    public GameObject shoot;
+
+    public List<GameObject> guns;
+    public int armaSelecionada;
+
+    public float showFireRate;
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        mainCamera = FindObjectOfType<Camera>();
+        armaSelecionada = 0;
     }
+
 
     // Update is called once per frame
     void Update()
     {
-        GetInput();
-        GetMousePosition();
-
+        LookMousePos();
+        Shoot();
+        selecionarArma();
     }
+
 
     void FixedUpdate()
     {
-        rb.velocity = movement; // Aplicar movimento
-        Animacoes();
+        Move();
     }
 
-    void GetInput()
-    {
-        horizontal = Input.GetAxisRaw("Horizontal");
-        vertical = Input.GetAxisRaw("Vertical");
-        movement = new Vector3(horizontal, 0f, vertical);
 
-        movement = movement * moveSpeed;
+    void Animacoes(float horizontal, float vertical)
+    {
+        animator.SetFloat("Forward", vertical);
+        animator.SetFloat("Turn", horizontal);
     }
 
-    void GetMousePosition()
-    {
-        Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition);
-        Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
-        float rayLenght;
 
-        if (groundPlane.Raycast(cameraRay, out rayLenght))
+    void Move()
+    {
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        horizontal = horizontal * Time.deltaTime * moveSpeed;
+        vertical = vertical * Time.deltaTime * moveSpeed;
+
+        if (lookPos.z > 0)
         {
-            Vector3 pointToLook = cameraRay.GetPoint(rayLenght);
-            Debug.DrawLine(cameraRay.origin, pointToLook, Color.blue);
+            movement = new Vector3(horizontal, 0, vertical);
+            Animacoes(horizontal, vertical);
+        }
+        else
+        {
+            movement = new Vector3(-horizontal, 0, vertical);
+            Animacoes(-horizontal, vertical);
+        }
 
-            transform.LookAt(new Vector3(pointToLook.x, transform.position.y, pointToLook.z));
+        transform.Translate(movement);
+    }
+
+
+    void LookMousePos()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 100))
+        {
+            lookPos = hit.point;
+        }
+
+        Vector3 lookDir = lookPos - transform.position;
+        lookDir.y = 0;
+
+        transform.LookAt(transform.position + lookDir, Vector3.up);
+    }
+
+
+    void selecionarArma()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Debug.Log(KeyCode.Alpha1);
+            armaSelecionada = 0;
+            guns[1].SetActive(false);
+            guns[0].SetActive(true);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            armaSelecionada = 1;
+            guns[0].SetActive(false);
+            guns[1].SetActive(true);
         }
     }
 
-    void Animacoes()
+
+    void Shoot()
     {
-        anim.SetFloat("Forward", vertical);
-        anim.SetFloat("Turn", horizontal);
+        Gun gun = guns[armaSelecionada].GetComponent<Gun>();
+        if (Input.GetButton("Fire1") && Time.time > nextFire && (ammoByType[armaSelecionada] != 0 || armaSelecionada == 0))
+        {
+            nextFire = Time.time + gun.fireRate;
+            Instantiate(shoot, shootSpawn.position, shootSpawn.rotation);
+
+            if (armaSelecionada != 0)
+            {
+                ammoByType[armaSelecionada] = ammoByType[armaSelecionada] - 1;
+            }
+        }
     }
 }
