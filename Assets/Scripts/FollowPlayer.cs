@@ -21,6 +21,6 @@ public class FollowPlayer : MonoBehaviour
     {
         //transform.position = Vector3.Lerp(transform.position, player.transform.position + targetOS, speedCamera * Time.deltaTime);
 
-        transform.position = new Vector3(player.transform.position.x, alturaCamera, player.transform.position.z - 5);
+        transform.position = new Vector3(player.transform.position.x, alturaCamera, player.transform.position.z - 5); //-5 para que a camera não esteja completamente por cima do jogador
     }
 }

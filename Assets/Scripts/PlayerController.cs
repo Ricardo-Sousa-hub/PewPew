@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButton("Fire1") && Time.time > nextFire && (ammoByType[armaSelecionada] != 0 || armaSelecionada == 0))
         {
             nextFire = Time.time + gun.fireRate;
-            Instantiate(bulletsByType[armaSelecionada], shootSpawn.position, Quaternion.Euler(90,0,0)); //Quaternion.Euler(x, y, z) porque o prefab estava a spawnar com a rotacao 0,0,0
+            Instantiate(bulletsByType[armaSelecionada], shootSpawn.position, shootSpawn.rotation); //Quaternion.Euler(x, y, z) porque o prefab estava a spawnar com a rotacao 0,0,0
 
             if (armaSelecionada != 0)
             {

@@ -234,8 +234,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 100
-  redBullet: {fileID: 97374848491268530, guid: 6cb3c09cc7915be4bb9fb80e31e4552b, type: 3}
-  bullet: {fileID: 97374848491268530, guid: 6163cab33e0bc1a4da4a0a38642c6234, type: 3}
+  redBullet: {fileID: 5594670013727557892, guid: 6938a8299ec482f458ab02614ffe0d57, type: 3}
+  bullet: {fileID: 5594670013727557892, guid: bde19480a1035b84b8ec3aef25464bde, type: 3}
 --- !u!65 &187577723
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -349,8 +349,8 @@ MonoBehaviour:
   animator: {fileID: 981438912}
   ammoByType: 000000003c000000
   bulletsByType:
-  - {fileID: 97374848491268530, guid: 6163cab33e0bc1a4da4a0a38642c6234, type: 3}
-  - {fileID: 97374848491268530, guid: 6cb3c09cc7915be4bb9fb80e31e4552b, type: 3}
+  - {fileID: 5594670013727557892, guid: 6938a8299ec482f458ab02614ffe0d57, type: 3}
+  - {fileID: 5594670013727557892, guid: bde19480a1035b84b8ec3aef25464bde, type: 3}
   shootSpawn: {fileID: 1828265985}
   guns:
   - {fileID: 1513649810}
@@ -402,10 +402,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.42952842
   m_Height: 2.0594335
   m_Direction: 1
-  m_Center: {x: 0, y: 1.0710077, z: 0}
+  m_Center: {x: -0.005535066, y: 1.0710077, z: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
