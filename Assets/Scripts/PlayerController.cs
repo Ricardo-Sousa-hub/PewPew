@@ -87,16 +87,21 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Debug.Log(KeyCode.Alpha1);
-            armaSelecionada = 0;
-            guns[1].SetActive(false);
             guns[0].SetActive(true);
+            guns[armaSelecionada].SetActive(false);
+            armaSelecionada = 0;
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            armaSelecionada = 1;
-            guns[0].SetActive(false);
             guns[1].SetActive(true);
+            guns[armaSelecionada].SetActive(false);
+            armaSelecionada = 1;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            guns[2].SetActive(true);
+            guns[armaSelecionada].SetActive(false);
+            armaSelecionada = 2;
         }
     }
 
