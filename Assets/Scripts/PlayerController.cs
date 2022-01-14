@@ -10,24 +10,24 @@ public class PlayerController : MonoBehaviour
     Vector3 lookPos;
 
     public Animator animator;
-
+    [Space]
+    public List<GameObject> guns;
+    public List<bool> armasDesbloqueadas;
     public List<int> ammoByType;
     public List<GameObject> bulletsByType;
 
-    private float nextFire;
+    float nextFire;
+    [Space]
     public Transform shootSpawn;
 
-    public List<GameObject> guns;
-    public int armaSelecionada;
-
-    public float showFireRate;
+    int armaSelecionada;
 
     public float life;
+    
     // Start is called before the first frame update
     void Start()
     {
         armaSelecionada = 0;
-        life = 100;
     }
 
 
@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
 
     void verificarVida()
     {
-        if(life == 0)
+        if(life <= 0)
         {
             Destroy(gameObject);
         }
@@ -96,24 +96,29 @@ public class PlayerController : MonoBehaviour
 
     void selecionarArma()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        switch (Input.inputString) // recolher o input em string
         {
-            guns[0].SetActive(true);
-            guns[armaSelecionada].SetActive(false);
-
-            armaSelecionada = 0;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            guns[1].SetActive(true);
-            guns[armaSelecionada].SetActive(false);
-            armaSelecionada = 1;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            guns[2].SetActive(true);
-            guns[armaSelecionada].SetActive(false);
-            armaSelecionada = 2;
+            case "1":
+                guns[0].SetActive(true);
+                guns[armaSelecionada].SetActive(false);
+                armaSelecionada = 0;
+                break;
+            case "2":
+                if (armasDesbloqueadas[1])
+                {
+                    guns[1].SetActive(true);
+                    guns[armaSelecionada].SetActive(false);
+                    armaSelecionada = 1;
+                }
+                break;
+            case "3":
+                if (armasDesbloqueadas[2])
+                {
+                    guns[2].SetActive(true);
+                    guns[armaSelecionada].SetActive(false);
+                    armaSelecionada = 2;
+                }
+                break;
         }
     }
 
