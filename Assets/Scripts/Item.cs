@@ -5,8 +5,9 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     public bool isHealth;
-    public bool isAmmo;
+    public int health;
     [Space]
+    public bool isAmmo;
     public int arma;
     public int ammoType;
     public int quantidadeDeMunicao;
@@ -35,7 +36,7 @@ public class Item : MonoBehaviour
             }
             else if (isHealth)
             {
-                player.GetComponent<PlayerController>().life = 100;
+                player.GetComponent<PlayerController>().life = health;
             }
             else
             {
