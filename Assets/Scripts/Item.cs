@@ -2,23 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletMove : MonoBehaviour
+public class Item : MonoBehaviour
 {
-    private Rigidbody rb;
-    public float speed;
-    public float damage;
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.velocity = transform.forward * speed;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-            
+        
     }
 
-    
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Enter");
+    }
 }

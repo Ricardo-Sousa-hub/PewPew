@@ -23,7 +23,9 @@ public class PlayerController : MonoBehaviour
     int armaSelecionada;
 
     public float life;
-    
+
+    Vector3 lookDir;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -87,7 +89,7 @@ public class PlayerController : MonoBehaviour
             lookPos = hit.point;
         }
 
-        Vector3 lookDir = lookPos - transform.position;
+        lookDir = lookPos - transform.position;
         lookDir.y = 0;
 
         transform.LookAt(transform.position + lookDir, Vector3.up);

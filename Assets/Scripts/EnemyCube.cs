@@ -37,7 +37,6 @@ public class EnemyCube : MonoBehaviour
     {
         if(life <= 0)
         {
-            DropReward();
             Destroy(gameObject);
         }
 
@@ -117,10 +116,5 @@ public class EnemyCube : MonoBehaviour
     void PosicaoDaHealthbar() // manter helathbar virada para a camara
     {
         health.transform.rotation = cam.transform.rotation;
-    }
-
-    void DropReward()
-    {
-
     }
 }
