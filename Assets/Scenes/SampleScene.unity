@@ -432,7 +432,7 @@ MonoBehaviour:
   - {fileID: 1513649810}
   - {fileID: 793569870325781904}
   - {fileID: 7058398706510790541}
-  armasDesbloqueadas: 010101
+  armasDesbloqueadas: 010000
   ammoByType: 000000003c0000003c000000
   bulletsByType:
   - {fileID: 5594670013727557892, guid: 6938a8299ec482f458ab02614ffe0d57, type: 3}
@@ -968,8 +968,9 @@ GameObject:
   - component: {fileID: 1220877704}
   - component: {fileID: 1220877703}
   - component: {fileID: 1220877702}
+  - component: {fileID: 1220877707}
   m_Layer: 0
-  m_Name: Cube (5)
+  m_Name: TestPowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -987,6 +988,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a8f9f8f4d00294280dedb1440d832d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isHealth: 0
+  isAmmo: 1
+  arma: 0
+  ammoType: 0
+  quantidadeDeMunicao: 100
+  player: {fileID: 256060665}
 --- !u!65 &1220877703
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1020,7 +1027,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a1fd6617dc16b5340b06f204ebbd60b6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1058,13 +1065,29 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1220877701}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.41, y: 0.5, z: 0}
+  m_LocalPosition: {x: 6.9, y: 0.5, z: -1.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1220877707
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220877701}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1381357721
 GameObject:
   m_ObjectHideFlags: 0
@@ -1406,15 +1429,7 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1227380954057495697, guid: c488b220774f74d4e9db40973e63f405, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1227380954057495697, guid: c488b220774f74d4e9db40973e63f405, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1227380954057495697, guid: c488b220774f74d4e9db40973e63f405, type: 3}
-      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1227380954393734889, guid: c488b220774f74d4e9db40973e63f405, type: 3}
@@ -1471,10 +1486,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1227380954393734894, guid: c488b220774f74d4e9db40973e63f405, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1227380955610823343, guid: c488b220774f74d4e9db40973e63f405, type: 3}
-      propertyPath: m_Direction
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

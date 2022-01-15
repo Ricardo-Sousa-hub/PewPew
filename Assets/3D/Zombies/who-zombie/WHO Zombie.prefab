@@ -86,9 +86,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1227380954393734894}
   - component: {fileID: 1227380954393734674}
-  - component: {fileID: 1227380954393734673}
   - component: {fileID: 1227380954393734890}
   - component: {fileID: 1227380954393734672}
+  - component: {fileID: 875116774093467661}
   m_Layer: 0
   m_Name: WHO Zombie
   m_TagString: Untagged
@@ -127,20 +127,6 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!136 &1227380954393734673
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1227380954393734889}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5769005
-  m_Height: 1.0584097
-  m_Direction: 1
-  m_Center: {x: -0, y: 0.029204845, z: -0.07690048}
 --- !u!114 &1227380954393734890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,17 +139,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77596e6ff2df68346a053c9a98e880b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 100
   redBullet: {fileID: 5594670013727557892, guid: 6938a8299ec482f458ab02614ffe0d57, type: 3}
   bullet: {fileID: 5594670013727557892, guid: bde19480a1035b84b8ec3aef25464bde, type: 3}
   greenBullet: {fileID: 5594670013727557892, guid: 68662935c45de1b46aac38127f2a07b6, type: 3}
+  life: 100
   damageRate: 0.8
   zombieDamage: 40
-  player: {fileID: 0}
   damageArea: 1.5
   enemy: {fileID: 1227380954393734672}
   health: {fileID: 1227380955610823343}
   animator: {fileID: 1227380955422120171}
+  player: {fileID: 0}
+  cam: {fileID: 0}
 --- !u!195 &1227380954393734672
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -186,6 +173,20 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
+--- !u!136 &875116774093467661
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227380954393734889}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5769005
+  m_Height: 1.0584097
+  m_Direction: 1
+  m_Center: {x: -0, y: 0.029204845, z: -0.07690048}
 --- !u!1 &1227380954758611308
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,7 +444,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 1227380954057495697}
   m_HandleRect: {fileID: 0}
-  m_Direction: 1
+  m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 0
