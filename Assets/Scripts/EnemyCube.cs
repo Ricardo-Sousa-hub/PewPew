@@ -13,6 +13,7 @@ public class EnemyCube : MonoBehaviour
     public float life;
     public float damageArea;
     public float damage;
+    public float tempoAteSerDestruido;
 
     public NavMeshAgent enemy;
     [Space]
@@ -22,6 +23,7 @@ public class EnemyCube : MonoBehaviour
     
     GameObject player;
     Camera cam;
+    CapsuleCollider capsule;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +31,7 @@ public class EnemyCube : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         cam = Camera.main;
         health.value = 100;
+        capsule = GetComponent<CapsuleCollider>();
     }
 
     // Update is called once per frame
@@ -36,7 +39,7 @@ public class EnemyCube : MonoBehaviour
     {
         if(life <= 0)
         {
-            Destroy(gameObject);
+            StartCoroutine(Dead(tempoAteSerDestruido));
         }
 
         PerseguirJogador();
@@ -120,6 +123,16 @@ public class EnemyCube : MonoBehaviour
     {
         player.GetComponent<PlayerController>().life -= damage;
     }
+
+    IEnumerator Dead(float tempo)
+    {
+        animator.SetBool("Dead", true);
+        capsule.enabled = false;
+        enemy.enabled = false;
+        yield return new WaitForSeconds(tempo);
+        Destroy(gameObject);
+    }
+
 
     void HealthBar()
     {

@@ -373,6 +373,7 @@ MonoBehaviour:
   life: 100
   damageArea: 1.5
   damage: 40
+  tempoAteSerDestruido: 10
   enemy: {fileID: 3974838993403531751}
   health: {fileID: 3974838993262249304}
   animator: {fileID: 873945577}
