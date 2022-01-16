@@ -106,11 +106,12 @@ public class EnemyCube : MonoBehaviour
 
     void IniciarAnimacao()
     {
-        if(VerificarDistanciaDeAtaque())
+        if(VerificarDistanciaDeAtaque() && life > 0)
         {
             animator.SetBool("Andar", false);
             animator.SetBool("Atack", true);
-            
+            transform.LookAt(player.GetComponent<Transform>().position);
+
         }
         else
         {
