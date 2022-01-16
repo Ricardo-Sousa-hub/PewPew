@@ -375,8 +375,8 @@ MonoBehaviour:
   damage: 40
   tempoAteSerDestruido: 10
   enemy: {fileID: 3974838993403531751}
+  canvas: {fileID: 3974838992363538570}
   health: {fileID: 3974838993262249304}
-  animator: {fileID: 873945577}
 --- !u!195 &3974838993403531751
 NavMeshAgent:
   m_ObjectHideFlags: 0

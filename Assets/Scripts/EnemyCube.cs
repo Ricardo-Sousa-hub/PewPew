@@ -17,9 +17,10 @@ public class EnemyCube : MonoBehaviour
 
     public NavMeshAgent enemy;
     [Space]
+    public Canvas canvas;
     public Slider health;
 
-    public Animator animator;
+    Animator animator;
     
     GameObject player;
     Camera cam;
@@ -28,6 +29,7 @@ public class EnemyCube : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
         cam = Camera.main;
         health.value = 100;
@@ -107,7 +109,6 @@ public class EnemyCube : MonoBehaviour
         if(VerificarDistanciaDeAtaque())
         {
             animator.SetBool("Andar", false);
-            
             animator.SetBool("Atack", true);
             
         }
@@ -126,6 +127,7 @@ public class EnemyCube : MonoBehaviour
 
     IEnumerator Dead(float tempo)
     {
+        canvas.enabled = false;
         animator.SetBool("Dead", true);
         capsule.enabled = false;
         enemy.enabled = false;
