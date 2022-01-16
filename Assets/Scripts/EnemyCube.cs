@@ -22,13 +22,15 @@ public class EnemyCube : MonoBehaviour
     public Slider health;
 
     public Animator animator;
-    [Space]
-    public GameObject player;
-    public Camera cam;
+    
+    GameObject player;
+    Camera cam;
 
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+        cam = Camera.main;
         health.value = 100;
     }
 
@@ -55,6 +57,10 @@ public class EnemyCube : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
+        {
+            return;
+        }
+        if (other.CompareTag("Powerup"))
         {
             return;
         }

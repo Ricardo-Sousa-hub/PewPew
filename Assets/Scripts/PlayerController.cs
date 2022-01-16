@@ -101,23 +101,23 @@ public class PlayerController : MonoBehaviour
         switch (Input.inputString) // recolher o input em string
         {
             case "1":
-                guns[0].SetActive(true);
                 guns[armaSelecionada].SetActive(false);
+                guns[0].SetActive(true);
                 armaSelecionada = 0;
                 break;
             case "2":
                 if (armasDesbloqueadas[1])
                 {
-                    guns[1].SetActive(true);
                     guns[armaSelecionada].SetActive(false);
+                    guns[1].SetActive(true);
                     armaSelecionada = 1;
                 }
                 break;
             case "3":
                 if (armasDesbloqueadas[2])
                 {
-                    guns[2].SetActive(true);
                     guns[armaSelecionada].SetActive(false);
+                    guns[2].SetActive(true);
                     armaSelecionada = 2;
                 }
                 break;

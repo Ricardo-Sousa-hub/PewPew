@@ -11,13 +11,14 @@ public class Item : MonoBehaviour
     public int arma;
     public int ammoType;
     public int quantidadeDeMunicao;
-    [Space]
-    public GameObject player;
+    public int maxAmmo;
+    
+    GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -32,19 +33,56 @@ public class Item : MonoBehaviour
         {
             if (isAmmo)
             {
-                player.GetComponent<PlayerController>().ammoByType[ammoType] = quantidadeDeMunicao;
+                IsAmmo();
             }
             else if (isHealth)
             {
-                player.GetComponent<PlayerController>().life = health;
+                print("Med");
+                IsHealth();
             }
             else
             {
                 player.GetComponent<PlayerController>().armasDesbloqueadas[arma] = true;
-                player.GetComponent<PlayerController>().ammoByType[arma] = quantidadeDeMunicao;
+                player.GetComponent<PlayerController>().ammoByType[arma] = maxAmmo;
+                Destroy(gameObject);
             }
-            
+        }
+    }
+
+    void IsAmmo()
+    {
+        if (player.GetComponent<PlayerController>().ammoByType[ammoType] <= maxAmmo - quantidadeDeMunicao) //60 < 100-50=50 false
+        {
+            player.GetComponent<PlayerController>().ammoByType[ammoType] += quantidadeDeMunicao;
+            Destroy(gameObject);
+        }
+        else if(player.GetComponent<PlayerController>().ammoByType[ammoType] == maxAmmo)
+        {
+            return;
+        }
+        else
+        {
+            player.GetComponent<PlayerController>().ammoByType[ammoType] = maxAmmo;
+            Destroy(gameObject);
+        }
+    }
+
+    void IsHealth()
+    {
+        if(player.GetComponent<PlayerController>().life <= 100 - health)
+        {
+            player.GetComponent<PlayerController>().life += health;
+            Destroy(gameObject);
+        }
+        else if(player.GetComponent<PlayerController>().life == health)
+        {
+            return;
+        }
+        else
+        {
+            player.GetComponent<PlayerController>().life = health;
             Destroy(gameObject);
         }
     }
 }
+
