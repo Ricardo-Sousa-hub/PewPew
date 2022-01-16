@@ -11,14 +11,11 @@ public class EnemyCube : MonoBehaviour
     public GameObject greenBullet;
     [Space]
     public float life;
-
-    public float damageRate;
-    public float zombieDamage;
-    private float nextFire;
     public float damageArea;
+    public float damage;
 
     public NavMeshAgent enemy;
-
+    [Space]
     public Slider health;
 
     public Animator animator;
@@ -45,8 +42,9 @@ public class EnemyCube : MonoBehaviour
         PerseguirJogador();
         PosicaoDaHealthbar();
         HealthBar();
-        VerificarDistanciaDeAtaque();
-        //DarDano();
+        IniciarAnimacao();
+        //VerificarDistanciaDeAtaque();
+
     }
 
     //private void OnDrawGizmosSelected()
@@ -94,30 +92,33 @@ public class EnemyCube : MonoBehaviour
         }
     }
 
-    void VerificarDistanciaDeAtaque()
+    public bool VerificarDistanciaDeAtaque()
     {
         float distace = Vector3.Distance(player.GetComponent<Transform>().position, transform.position);
 
-        if (distace < damageArea)
+        return distace < damageArea;
+    }
+
+    void IniciarAnimacao()
+    {
+        if(VerificarDistanciaDeAtaque())
         {
-            DarDano();
+            animator.SetBool("Andar", false);
+            
+            animator.SetBool("Atack", true);
+            
         }
         else
         {
             animator.SetBool("Andar", true);
             animator.SetBool("Atack", false);
         }
+        
     }
 
     void DarDano()
     {
-        animator.SetBool("Andar", false);
-        if (Time.time > nextFire)
-        {
-            animator.SetBool("Atack", true);
-            nextFire = Time.time + damageRate;
-            player.GetComponent<PlayerController>().life -= zombieDamage;
-        }
+        player.GetComponent<PlayerController>().life -= damage;
     }
 
     void HealthBar()
