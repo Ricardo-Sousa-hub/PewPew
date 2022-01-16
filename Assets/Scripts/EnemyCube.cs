@@ -45,7 +45,8 @@ public class EnemyCube : MonoBehaviour
         PerseguirJogador();
         PosicaoDaHealthbar();
         HealthBar();
-        DarDano();
+        VerificarDistanciaDeAtaque();
+        //DarDano();
     }
 
     //private void OnDrawGizmosSelected()
@@ -93,24 +94,29 @@ public class EnemyCube : MonoBehaviour
         }
     }
 
-    void DarDano()
+    void VerificarDistanciaDeAtaque()
     {
         float distace = Vector3.Distance(player.GetComponent<Transform>().position, transform.position);
 
         if (distace < damageArea)
         {
-            animator.SetBool("Andar", false);
-            if(Time.time > nextFire) 
-            {
-                animator.SetBool("Atack", true);
-                nextFire = Time.time + damageRate;
-                player.GetComponent<PlayerController>().life -= zombieDamage;
-            }
+            DarDano();
         }
         else
         {
             animator.SetBool("Andar", true);
             animator.SetBool("Atack", false);
+        }
+    }
+
+    void DarDano()
+    {
+        animator.SetBool("Andar", false);
+        if (Time.time > nextFire)
+        {
+            animator.SetBool("Atack", true);
+            nextFire = Time.time + damageRate;
+            player.GetComponent<PlayerController>().life -= zombieDamage;
         }
     }
 
