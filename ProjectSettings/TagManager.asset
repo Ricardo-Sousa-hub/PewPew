@@ -9,6 +9,10 @@ TagManager:
   - GreenBullet
   - Powerup
   - Enemy
+  - Granade
+  - Bullet1
+  - SniperBullet
+  - Store
   layers:
   - Default
   - TransparentFX

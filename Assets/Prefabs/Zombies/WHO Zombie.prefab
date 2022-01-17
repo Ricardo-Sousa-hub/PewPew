@@ -370,6 +370,9 @@ MonoBehaviour:
   redBullet: {fileID: 5594670013727557892, guid: 6938a8299ec482f458ab02614ffe0d57, type: 3}
   bullet: {fileID: 5594670013727557892, guid: bde19480a1035b84b8ec3aef25464bde, type: 3}
   greenBullet: {fileID: 5594670013727557892, guid: 68662935c45de1b46aac38127f2a07b6, type: 3}
+  granade: {fileID: 2967243107293020617, guid: 2600df23399740c4b90fad22eb4d6a2d, type: 3}
+  bullet1: {fileID: 822219777738804712, guid: 3c7ea2a322a03d84b941d4c6aa0e4ac5, type: 3}
+  sniperBullet: {fileID: 5037203685800972430, guid: 3343a1362b760d04fb5c58a67ccd6e9f, type: 3}
   life: 100
   damageArea: 1.5
   damage: 40
@@ -377,6 +380,7 @@ MonoBehaviour:
   enemy: {fileID: 3974838993403531751}
   canvas: {fileID: 3974838992363538570}
   health: {fileID: 3974838993262249304}
+  pontos: 20
 --- !u!195 &3974838993403531751
 NavMeshAgent:
   m_ObjectHideFlags: 0

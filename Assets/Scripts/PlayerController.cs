@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     public List<bool> armasDesbloqueadas;
     public List<int> ammoByType;
     public List<GameObject> bulletsByType;
+    int[] maxAmmo = { 0, 60, 60, 12, 500, 24 };
+    int[] precoArmas = { 0, 100, 200, 300, 400, 500 };
 
     float nextFire;
     [Space]
@@ -26,9 +28,12 @@ public class PlayerController : MonoBehaviour
 
     Vector3 lookDir;
 
+    public float score;
+
     // Start is called before the first frame update
     void Start()
     {
+        score = 0;
         armaSelecionada = 0;
     }
 
@@ -121,6 +126,22 @@ public class PlayerController : MonoBehaviour
                     armaSelecionada = 2;
                 }
                 break;
+            case "4":
+                if (armasDesbloqueadas[3])
+                {
+                    guns[armaSelecionada].SetActive(false);
+                    guns[3].SetActive(true);
+                    armaSelecionada = 3;
+                }
+                break;
+            case "5":
+                if (armasDesbloqueadas[4])
+                {
+                    guns[armaSelecionada].SetActive(false);
+                    guns[4].SetActive(true);
+                    armaSelecionada = 4;
+                }
+                break;
         }
     }
 
@@ -138,5 +159,25 @@ public class PlayerController : MonoBehaviour
                 ammoByType[armaSelecionada] = ammoByType[armaSelecionada] - 1;
             }
         }
+    }
+
+    public void DesbloquearArmaAndAmmo(int arma)
+    {
+        if(score > precoArmas[arma])
+        {
+            score -= precoArmas[arma];
+            armasDesbloqueadas[arma] = true;
+            ammoByType[arma] = maxAmmo[arma];
+        }
+    }
+
+    public void Health()
+    {
+        life = 100;
+    }
+
+    public void AddScore(int pontos)
+    {
+        score += pontos;
     }
 }

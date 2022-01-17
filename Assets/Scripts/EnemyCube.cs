@@ -9,6 +9,9 @@ public class EnemyCube : MonoBehaviour
     public GameObject redBullet;
     public GameObject bullet;
     public GameObject greenBullet;
+    public GameObject granade;
+    public GameObject bullet1;
+    public GameObject sniperBullet;
     [Space]
     public float life;
     public float damageArea;
@@ -19,12 +22,16 @@ public class EnemyCube : MonoBehaviour
     [Space]
     public Canvas canvas;
     public Slider health;
+    [Space]
+    public int pontos;
 
     Animator animator;
     
     GameObject player;
     Camera cam;
     CapsuleCollider capsule;
+
+    bool isDead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -39,15 +46,20 @@ public class EnemyCube : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(life <= 0)
+        if (life > 0)
         {
+            PerseguirJogador();
+            PosicaoDaHealthbar();
+            HealthBar();
+            IniciarAnimacao();
+        }
+        else
+        {
+            gameObject.tag = "Untagged";
             StartCoroutine(Dead(tempoAteSerDestruido));
         }
 
-        PerseguirJogador();
-        PosicaoDaHealthbar();
-        HealthBar();
-        IniciarAnimacao();
+        
         //VerificarDistanciaDeAtaque();
 
     }
@@ -68,6 +80,10 @@ public class EnemyCube : MonoBehaviour
         {
             return;
         }
+        if (other.CompareTag("Store"))
+        {
+            return;
+        }
 
         if(life > 0)
         {
@@ -82,7 +98,17 @@ public class EnemyCube : MonoBehaviour
                     break;
 
                 case "GreenBullet":
-                    life -= bullet.GetComponent<BulletMove>().damage;
+                    life -= greenBullet.GetComponent<BulletMove>().damage;
+                    break;
+
+                case "Granade":
+                    life -= granade.GetComponent<BulletMove>().damage;
+                    break;
+                case "Bullet1":
+                    life -= bullet1.GetComponent<BulletMove>().damage;
+                    break;
+                case "SniperBullet":
+                    life -= sniperBullet.GetComponent<BulletMove>().damage;
                     break;
             }
             Destroy(other.gameObject);
@@ -128,11 +154,19 @@ public class EnemyCube : MonoBehaviour
 
     IEnumerator Dead(float tempo)
     {
+        if (!isDead)
+        {
+            player.GetComponent<PlayerController>().AddScore(pontos);
+            isDead = true;
+        }
+
         canvas.enabled = false;
         animator.SetBool("Dead", true);
         capsule.enabled = false;
         enemy.enabled = false;
+        
         yield return new WaitForSeconds(tempo);
+
         Destroy(gameObject);
     }
 
