@@ -15,8 +15,9 @@ public class PlayerController : MonoBehaviour
     public List<bool> armasDesbloqueadas;
     public List<int> ammoByType;
     public List<GameObject> bulletsByType;
-    int[] maxAmmo = { 0, 60, 60, 12, 500, 24 };
-    int[] precoArmas = { 0, 100, 200, 300, 400, 500 };
+    [Space]
+    public int[] maxAmmo;
+    public int[] precoArmas;
 
     float nextFire;
     [Space]
