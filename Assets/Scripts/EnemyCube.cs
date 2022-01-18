@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using MilkShake;
 
 public class EnemyCube : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class EnemyCube : MonoBehaviour
     public GameObject granade;
     public GameObject bullet1;
     public GameObject sniperBullet;
+    public int maxZombiesPerfurar;
     [Space]
     public float life;
     public float damageArea;
@@ -72,18 +74,15 @@ public class EnemyCube : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+         
         if (other.CompareTag("Player"))
         {
             return;
         }
-        if (other.CompareTag("Powerup"))
-        {
-            return;
-        }
-        if (other.CompareTag("Store"))
-        {
-            return;
-        }
+        //if (other.CompareTag("Store"))
+        //{
+        //    return;
+        //}
 
         if(life > 0)
         {
@@ -91,29 +90,40 @@ public class EnemyCube : MonoBehaviour
             {
                 case "Bullet":
                     life -= bullet.GetComponent<BulletMove>().damage;
+                    Destroy(other.gameObject);
                     break;
 
                 case "RedBullet":
                     life -= redBullet.GetComponent<BulletMove>().damage;
+                    Destroy(other.gameObject);
                     break;
 
                 case "GreenBullet":
                     life -= greenBullet.GetComponent<BulletMove>().damage;
+                    Destroy(other.gameObject);
                     break;
 
                 case "Granade":
                     life -= granade.GetComponent<BulletMove>().damage;
+                    Destroy(other.gameObject);
                     break;
                 case "Bullet1":
                     life -= bullet1.GetComponent<BulletMove>().damage;
+                    Destroy(other.gameObject);
                     break;
                 case "SniperBullet":
                     life -= sniperBullet.GetComponent<BulletMove>().damage;
+                    //Sniper(other.gameObject);
                     break;
             }
-            Destroy(other.gameObject);
         }
     }
+
+    //IEnumerator Sniper(GameObject obj)
+    //{
+    //    yield return new WaitForSeconds(7);
+    //    Destroy(obj);
+    //}
 
     void PerseguirJogador()
     {
@@ -149,6 +159,7 @@ public class EnemyCube : MonoBehaviour
 
     void DarDano()
     {
+        cam.GetComponent<ShakeCam>().Shake();
         player.GetComponent<PlayerController>().life -= damage;
     }
 

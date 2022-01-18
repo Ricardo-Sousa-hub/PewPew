@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6838507540743663963}
   - component: {fileID: 6434789271226910819}
   - component: {fileID: 793587512510751874}
+  - component: {fileID: 1844229955351248875}
   m_Layer: 0
   m_Name: Pocisk 6.5x55mm - lepsza siatka
   m_TagString: SniperBullet
@@ -101,6 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 40
   damage: 100
+  QuantidadeDeZombiesMax: 3
 --- !u!136 &793587512510751874
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -109,9 +111,25 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5037203685800972430}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.0017448622
   m_Height: 0.02105708
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &1844229955351248875
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5037203685800972430}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 0

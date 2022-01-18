@@ -143,6 +143,14 @@ public class PlayerController : MonoBehaviour
                     armaSelecionada = 4;
                 }
                 break;
+            case "6":
+                if (armasDesbloqueadas[5])
+                {
+                    guns[armaSelecionada].SetActive(false);
+                    guns[5].SetActive(true);
+                    armaSelecionada = 5;
+                }
+                break;
         }
     }
 
@@ -154,7 +162,7 @@ public class PlayerController : MonoBehaviour
         {
             nextFire = Time.time + gun.fireRate;
             Instantiate(bulletsByType[armaSelecionada], shootSpawn.position, shootSpawn.rotation); //Quaternion.Euler(x, y, z) porque o prefab estava a spawnar com a rotacao 0,0,0
-
+            
             if (armaSelecionada != 0)
             {
                 ammoByType[armaSelecionada] = ammoByType[armaSelecionada] - 1;

@@ -45,10 +45,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.031271756
-  m_Height: 0.12685825
+  m_Radius: 0.03081289
+  m_Height: 0.12392537
   m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 0.00020097941}
+  m_Center: {x: 0, y: -0.00008511543, z: 0.0008845106}
 --- !u!54 &2967243107293020619
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -79,6 +79,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   damage: 100
+  QuantidadeDeZombiesMax: 0
+  RaioDeExplosao: 5
+  explosion: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
 --- !u!1 &2967243108712207349
 GameObject:
   m_ObjectHideFlags: 0
