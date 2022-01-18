@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
 
     public float score;
 
+    public bool isStoreActive;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,16 +44,22 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        LookMousePos();
-        Shoot();
-        selecionarArma();
-        verificarVida();
+        if (!isStoreActive)
+        {
+            LookMousePos();
+            Shoot();
+            selecionarArma();
+            verificarVida();
+        }
     }
 
 
     void FixedUpdate()
     {
-        Move();
+        if (!isStoreActive)
+        {
+            Move();
+        }
     }
 
     void verificarVida()

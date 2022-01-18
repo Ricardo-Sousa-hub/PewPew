@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     [Space]
     public float MaxX;
     public float MaxZ;
+    [Space]
+    public Camera secondCam;
 
     int quantidadeZombiesFast;
     int quantidadeZombiesNormal;
@@ -32,6 +34,8 @@ public class GameManager : MonoBehaviour
         quantidadeZombiesFast = 0;
         quantidadeZombiesBig = 0;
         estado = false;
+        player.GetComponent<PlayerController>().isStoreActive = estado;
+        secondCam.enabled = estado;
         StartCoroutine(SpawnWave());
     }
 
@@ -69,6 +73,8 @@ public class GameManager : MonoBehaviour
             if (estado)
             {
                 loja.gameObject.SetActive(!estado);
+                player.GetComponent<PlayerController>().isStoreActive = !estado;
+                secondCam.enabled = !estado;
                 estado = !estado;
             }
 
@@ -117,6 +123,10 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.B) && !FimDeWave())
         {
+            player.GetComponentInChildren<Animator>().SetFloat("Turn", 0);
+            player.GetComponentInChildren<Animator>().SetFloat("Forward", 0);
+            secondCam.enabled = !estado;
+            player.GetComponent<PlayerController>().isStoreActive = !estado;
             loja.gameObject.SetActive(!estado);
             estado = !estado;
         }
