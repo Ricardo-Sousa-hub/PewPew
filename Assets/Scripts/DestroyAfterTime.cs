@@ -18,6 +18,7 @@ public class DestroyAfterTime : MonoBehaviour
 
     IEnumerator DestruirAfterTime()
     {
+        transform.localPosition += new Vector3(0, 1.5f, 0);
         yield return new WaitForSeconds(2);
         Destroy(gameObject);
     }

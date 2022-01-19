@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public Canvas loja;
+    public GameObject loja;
+    public TextMeshProUGUI score;
     public float tempoEntreWaves;
 
     int quantidadeDeInimigos;
@@ -42,6 +44,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateScore();
         Loja();
     }
 
@@ -72,7 +75,7 @@ public class GameManager : MonoBehaviour
         {
             if (estado)
             {
-                loja.gameObject.SetActive(!estado);
+                loja.SetActive(!estado);
                 player.GetComponent<PlayerController>().isStoreActive = !estado;
                 secondCam.enabled = !estado;
                 estado = !estado;
@@ -127,8 +130,13 @@ public class GameManager : MonoBehaviour
             player.GetComponentInChildren<Animator>().SetFloat("Forward", 0);
             secondCam.enabled = !estado;
             player.GetComponent<PlayerController>().isStoreActive = !estado;
-            loja.gameObject.SetActive(!estado);
+            loja.SetActive(!estado);
             estado = !estado;
         }
+    }
+
+    void UpdateScore()
+    {
+        score.SetText("Score: "+player.GetComponent<PlayerController>().score.ToString());
     }
 }

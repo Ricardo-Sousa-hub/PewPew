@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 using MilkShake;
+using TMPro;
 
 public class EnemyCube : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class EnemyCube : MonoBehaviour
     [Space]
     public Canvas canvas;
     public Slider health;
+    public GameObject text;
     [Space]
     public int pontos;
 
@@ -89,31 +91,33 @@ public class EnemyCube : MonoBehaviour
             switch (other.tag)
             {
                 case "Bullet":
+                    ShowFloatingText(bullet.GetComponent<BulletMove>().damage);
                     life -= bullet.GetComponent<BulletMove>().damage;
                     Destroy(other.gameObject);
                     break;
 
                 case "RedBullet":
+                    ShowFloatingText(redBullet.GetComponent<BulletMove>().damage);
                     life -= redBullet.GetComponent<BulletMove>().damage;
                     Destroy(other.gameObject);
                     break;
 
                 case "GreenBullet":
+                    ShowFloatingText(greenBullet.GetComponent<BulletMove>().damage);
                     life -= greenBullet.GetComponent<BulletMove>().damage;
                     Destroy(other.gameObject);
                     break;
 
                 case "Granade":
-                    life -= granade.GetComponent<BulletMove>().damage;
-                    Destroy(other.gameObject);
+                    ShowFloatingText(granade.GetComponent<BulletMove>().damage);
                     break;
                 case "Bullet1":
+                    ShowFloatingText(bullet1.GetComponent<BulletMove>().damage);
                     life -= bullet1.GetComponent<BulletMove>().damage;
                     Destroy(other.gameObject);
                     break;
                 case "SniperBullet":
-                    life -= sniperBullet.GetComponent<BulletMove>().damage;
-                    //Sniper(other.gameObject);
+                    ShowFloatingText(sniperBullet.GetComponent<BulletMove>().damage);
                     break;
             }
         }
@@ -190,5 +194,12 @@ public class EnemyCube : MonoBehaviour
     void PosicaoDaHealthbar() // manter helathbar virada para a camara
     {
         health.transform.rotation = cam.transform.rotation;
+    }
+
+    void ShowFloatingText(float damage)
+    {
+        var go = Instantiate(text, transform.position, Quaternion.identity, transform);
+        string damageTaken = "-" + damage;
+        go.GetComponent<TextMesh>().text = damageTaken;
     }
 }

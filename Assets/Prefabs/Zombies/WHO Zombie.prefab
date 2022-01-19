@@ -167,8 +167,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 927562b0d75c7a541a16decf481b256d, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -202,7 +202,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3974838993262249306}
   m_LocalRotation: {x: -0.53729963, y: 0, z: 0, w: 0.8433914}
-  m_LocalPosition: {x: 0, y: 0, z: -0.098}
+  m_LocalPosition: {x: 0, y: 0, z: -0.079}
   m_LocalScale: {x: 0.014149359, y: 0.026830738, z: 0.0052}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -214,8 +214,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -65, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.759}
-  m_SizeDelta: {x: 160, y: 20}
+  m_AnchoredPosition: {x: 0, y: 0.782}
+  m_SizeDelta: {x: 100, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3974838993262249304
 MonoBehaviour:
@@ -377,14 +377,15 @@ MonoBehaviour:
   sniperBullet: {fileID: 5037203685800972430, guid: 3343a1362b760d04fb5c58a67ccd6e9f,
     type: 3}
   maxZombiesPerfurar: 2
-  life: 100
+  life: 400
   damageArea: 1.5
   damage: 40
   tempoAteSerDestruido: 10
   enemy: {fileID: 3974838993403531751}
   canvas: {fileID: 3974838992363538570}
   health: {fileID: 3974838993262249304}
-  pontos: 20
+  text: {fileID: 8547361651895295263, guid: 66eb0d177f69c9441a3102d4005a1c56, type: 3}
+  pontos: 100
 --- !u!195 &3974838993403531751
 NavMeshAgent:
   m_ObjectHideFlags: 0
