@@ -28,7 +28,7 @@ public class EnemyCube : MonoBehaviour
     public int pontos;
 
     Animator animator;
-    
+
     GameObject player;
     Camera cam;
     CapsuleCollider capsule;
@@ -61,7 +61,7 @@ public class EnemyCube : MonoBehaviour
             StartCoroutine(Dead(tempoAteSerDestruido));
         }
 
-        
+
         //VerificarDistanciaDeAtaque();
 
     }
@@ -74,7 +74,7 @@ public class EnemyCube : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-         
+
         if (other.CompareTag("Player"))
         {
             return;
@@ -84,7 +84,7 @@ public class EnemyCube : MonoBehaviour
         //    return;
         //}
 
-        if(life > 0)
+        if (life > 0)
         {
             switch (other.tag)
             {
@@ -127,7 +127,7 @@ public class EnemyCube : MonoBehaviour
 
     void PerseguirJogador()
     {
-        if(life > 0)
+        if (life > 0)
         {
             enemy.SetDestination(player.GetComponent<Transform>().position);
         }
@@ -142,7 +142,7 @@ public class EnemyCube : MonoBehaviour
 
     void IniciarAnimacao()
     {
-        if(VerificarDistanciaDeAtaque() && life > 0)
+        if (VerificarDistanciaDeAtaque() && life > 0)
         {
             animator.SetBool("Andar", false);
             animator.SetBool("Atack", true);
@@ -154,7 +154,7 @@ public class EnemyCube : MonoBehaviour
             animator.SetBool("Andar", true);
             animator.SetBool("Atack", false);
         }
-        
+
     }
 
     void DarDano()
@@ -175,7 +175,7 @@ public class EnemyCube : MonoBehaviour
         animator.SetBool("Dead", true);
         capsule.enabled = false;
         enemy.enabled = false;
-        
+
         yield return new WaitForSeconds(tempo);
 
         Destroy(gameObject);

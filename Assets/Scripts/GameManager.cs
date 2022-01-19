@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     GameObject player;
 
     bool estado;
- 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     bool FimDeWave()
     {
         quantidadeDeInimigos = GameObject.FindGameObjectsWithTag("Enemy").Length;
-        if(quantidadeDeInimigos == 0)
+        if (quantidadeDeInimigos == 0)
         {
             return false;
         }
@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator SpawnWave()
     {
-        while(player != null)
+        while (player != null)
         {
             if (estado)
             {
@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
                 estado = !estado;
             }
 
-            if(wave != 1)
+            if (wave != 1)
             {
                 yield return new WaitWhile(FimDeWave);
 
@@ -110,9 +110,9 @@ public class GameManager : MonoBehaviour
     void Spawn()
     {
         int[] quantidades = { quantidadeZombiesNormal, quantidadeZombiesBig, quantidadeZombiesFast };
-        for(int i = 0; i< quantidades.Length; i++)
+        for (int i = 0; i < quantidades.Length; i++)
         {
-            for(int j = 0; j < quantidades[i]; j++)
+            for (int j = 0; j < quantidades[i]; j++)
             {
                 Instantiate(inimigos[i], Posicao(), Quaternion.Euler(player.transform.rotation.x, player.transform.rotation.y, player.transform.rotation.z));
             }
