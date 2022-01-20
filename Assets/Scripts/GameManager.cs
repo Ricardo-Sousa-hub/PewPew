@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -93,7 +94,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator SpawnWave()
     {
-        if(playerGO != null)
+        while(playerGO != null)
         {
             if (estado)
             {
@@ -136,12 +137,15 @@ public class GameManager : MonoBehaviour
 
     void Spawn()
     {
-        int[] quantidades = { quantidadeZombiesNormal, quantidadeZombiesBig, quantidadeZombiesFast };
-        for (int i = 0; i < quantidades.Length; i++)
+        if(playerGO != null)
         {
-            for (int j = 0; j < quantidades[i]; j++)
+            int[] quantidades = { quantidadeZombiesNormal, quantidadeZombiesBig, quantidadeZombiesFast };
+            for (int i = 0; i < quantidades.Length; i++)
             {
-                Instantiate(inimigos[i], Posicao(), Quaternion.Euler(playerGO.transform.rotation.x, playerGO.transform.rotation.y, playerGO.transform.rotation.z));
+                for (int j = 0; j < quantidades[i]; j++)
+                {
+                    Instantiate(inimigos[i], Posicao(), Quaternion.Euler(playerGO.transform.rotation.x, playerGO.transform.rotation.y, playerGO.transform.rotation.z));
+                }
             }
         }
     }
@@ -194,21 +198,9 @@ public class GameManager : MonoBehaviour
     {
         EndGame(false);
 
-        Instantiate(playerPrefab, transform.position, transform.rotation);
+        //Instantiate(playerPrefab, transform.position, transform.rotation);
 
         score.SetText(PlayerPrefs.GetFloat("HighScore", 0).ToString());
-
-        playerGO = GameObject.FindGameObjectWithTag("Player");
-        player = playerGO.GetComponent<PlayerController>();
-        estado = false;
-        player.isStoreActive = estado;
-        secondCam = GameObject.FindWithTag("SecondCamera").GetComponent<Camera>();
-        secondCam.enabled = estado;
-
-        wave = 1;
-        quantidadeZombiesNormal = 2;
-        quantidadeZombiesFast = 0;
-        quantidadeZombiesBig = 0;
 
         GameObject[] enemys = GameObject.FindGameObjectsWithTag("Dead");
         foreach (GameObject enemy in enemys)
@@ -216,6 +208,6 @@ public class GameManager : MonoBehaviour
             Destroy(enemy);
         }
 
-        StartCoroutine(SpawnWave());
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class PlayerController : MonoBehaviour
     public List<bool> armasDesbloqueadas;
     public List<int> ammoByType;
     public List<GameObject> bulletsByType;
+    [Space]
+    public List<Image> gunsImage;
     [Space]
     public int[] maxAmmo;
     public int[] precoArmas;
@@ -115,47 +118,77 @@ public class PlayerController : MonoBehaviour
         switch (Input.inputString) // recolher o input em string
         {
             case "1":
+                gunsImage[armaSelecionada] = gunsImage[armaSelecionada].GetComponent<Image>();
+                gunsImage[armaSelecionada].color = new Color(gunsImage[armaSelecionada].color.r, gunsImage[armaSelecionada].color.g, gunsImage[armaSelecionada].color.b, 0.1f);
                 guns[armaSelecionada].SetActive(false);
+
                 guns[0].SetActive(true);
+                gunsImage[0] = gunsImage[0].GetComponent<Image>();
+                gunsImage[0].color = new Color(gunsImage[0].color.r, gunsImage[0].color.g, gunsImage[0].color.b, 1);
                 armaSelecionada = 0;
                 break;
             case "2":
                 if (armasDesbloqueadas[1])
                 {
+                    gunsImage[armaSelecionada] = gunsImage[armaSelecionada].GetComponent<Image>();
+                    gunsImage[armaSelecionada].color = new Color(gunsImage[armaSelecionada].color.r, gunsImage[armaSelecionada].color.g, gunsImage[armaSelecionada].color.b, 0.1f);
                     guns[armaSelecionada].SetActive(false);
+
                     guns[1].SetActive(true);
+                    gunsImage[1] = gunsImage[1].GetComponent<Image>();
+                    gunsImage[1].color = new Color(gunsImage[1].color.r, gunsImage[1].color.g, gunsImage[1].color.b, 1);
                     armaSelecionada = 1;
                 }
                 break;
             case "3":
                 if (armasDesbloqueadas[2])
                 {
+                    gunsImage[armaSelecionada] = gunsImage[armaSelecionada].GetComponent<Image>();
+                    gunsImage[armaSelecionada].color = new Color(gunsImage[armaSelecionada].color.r, gunsImage[armaSelecionada].color.g, gunsImage[armaSelecionada].color.b, 0.1f);
                     guns[armaSelecionada].SetActive(false);
+
                     guns[2].SetActive(true);
+                    gunsImage[2] = gunsImage[2].GetComponent<Image>();
+                    gunsImage[2].color = new Color(gunsImage[2].color.r, gunsImage[2].color.g, gunsImage[2].color.b, 1);
                     armaSelecionada = 2;
                 }
                 break;
             case "4":
                 if (armasDesbloqueadas[3])
                 {
+                    gunsImage[armaSelecionada] = gunsImage[armaSelecionada].GetComponent<Image>();
+                    gunsImage[armaSelecionada].color = new Color(gunsImage[armaSelecionada].color.r, gunsImage[armaSelecionada].color.g, gunsImage[armaSelecionada].color.b, 0.1f);
                     guns[armaSelecionada].SetActive(false);
+
                     guns[3].SetActive(true);
+                    gunsImage[3] = gunsImage[3].GetComponent<Image>();
+                    gunsImage[3].color = new Color(gunsImage[3].color.r, gunsImage[3].color.g, gunsImage[3].color.b, 1);
                     armaSelecionada = 3;
                 }
                 break;
             case "5":
                 if (armasDesbloqueadas[4])
                 {
+                    gunsImage[armaSelecionada] = gunsImage[armaSelecionada].GetComponent<Image>();
+                    gunsImage[armaSelecionada].color = new Color(gunsImage[armaSelecionada].color.r, gunsImage[armaSelecionada].color.g, gunsImage[armaSelecionada].color.b, 0.1f);
                     guns[armaSelecionada].SetActive(false);
+
                     guns[4].SetActive(true);
+                    gunsImage[4] = gunsImage[4].GetComponent<Image>();
+                    gunsImage[4].color = new Color(gunsImage[4].color.r, gunsImage[4].color.g, gunsImage[4].color.b, 1);
                     armaSelecionada = 4;
                 }
                 break;
             case "6":
                 if (armasDesbloqueadas[5])
                 {
+                    gunsImage[armaSelecionada] = gunsImage[armaSelecionada].GetComponent<Image>();
+                    gunsImage[armaSelecionada].color = new Color(gunsImage[armaSelecionada].color.r, gunsImage[armaSelecionada].color.g, gunsImage[armaSelecionada].color.b, 0.1f);
                     guns[armaSelecionada].SetActive(false);
+
                     guns[5].SetActive(true);
+                    gunsImage[4] = gunsImage[4].GetComponent<Image>();
+                    gunsImage[4].color = new Color(gunsImage[4].color.r, gunsImage[4].color.g, gunsImage[4].color.b, 1);
                     armaSelecionada = 5;
                 }
                 break;
@@ -180,10 +213,15 @@ public class PlayerController : MonoBehaviour
 
     public void DesbloquearArmaAndAmmo(int arma)
     {
-        if(score > precoArmas[arma])
+        if(score >= precoArmas[arma] && !armasDesbloqueadas[arma])
         {
             score -= precoArmas[arma];
             armasDesbloqueadas[arma] = true;
+            ammoByType[arma] = maxAmmo[arma];
+        }
+        else if(score >= (precoArmas[arma] / 2) && armasDesbloqueadas[arma] && ammoByType[arma] < maxAmmo[arma])
+        {
+            score -= (precoArmas[arma] / 2);
             ammoByType[arma] = maxAmmo[arma];
         }
     }

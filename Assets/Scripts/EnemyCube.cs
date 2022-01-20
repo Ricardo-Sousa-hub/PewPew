@@ -163,8 +163,11 @@ public class EnemyCube : MonoBehaviour
 
     void DarDano()
     {
-        cam.GetComponent<ShakeCam>().Shake();
-        player.GetComponent<PlayerController>().life -= damage;
+        if(player != null)
+        {
+            cam.GetComponent<ShakeCam>().Shake();
+            player.GetComponent<PlayerController>().life -= damage;
+        }
     }
 
     IEnumerator Dead(float tempo)
