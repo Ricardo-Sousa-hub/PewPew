@@ -5,6 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - Shootable
+  - Bullet
+  - RedBullet
+  - GreenBullet
+  - Granade
+  - SniperBullet
+  - Enemy
+  - Bullet1
+  - SecondCamera
+  - Dead
   layers:
   - Default
   - TransparentFX

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour
 {
-    public GameObject player;
+    GameObject player;
+    public GameManager manager;
     //public Vector3 targetOS;
     //public float speedCamera;
 
@@ -13,15 +14,20 @@ public class FollowPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(manager.wave == 2)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
         //transform.position = Vector3.Lerp(transform.position, player.transform.position + targetOS, speedCamera * Time.deltaTime);
-
-        transform.position = new Vector3(player.transform.position.x, alturaCamera, player.transform.position.z - 5); //-5 para que a camera não esteja completamente por cima do jogador
-
+        if(player != null)
+        {
+            transform.position = new Vector3(player.transform.position.x, alturaCamera, player.transform.position.z - 5); //-5 para que a camera não esteja completamente por cima do jogador
+        }
     }
 }

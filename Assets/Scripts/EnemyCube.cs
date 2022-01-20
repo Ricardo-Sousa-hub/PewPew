@@ -50,7 +50,7 @@ public class EnemyCube : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (life > 0)
+        if (life > 0 && player != null)
         {
             PerseguirJogador();
             PosicaoDaHealthbar();
@@ -59,7 +59,7 @@ public class EnemyCube : MonoBehaviour
         }
         else
         {
-            gameObject.tag = "Untagged";
+            gameObject.tag = "Dead";
             StartCoroutine(Dead(tempoAteSerDestruido));
         }
 
@@ -169,9 +169,13 @@ public class EnemyCube : MonoBehaviour
 
     IEnumerator Dead(float tempo)
     {
-        if (!isDead)
+        if (!isDead && player != null)
         {
             player.GetComponent<PlayerController>().AddScore(pontos);
+            isDead = true;
+        }
+        else if(life <= 0)
+        {
             isDead = true;
         }
 

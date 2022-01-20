@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject loja;
     public TextMeshProUGUI score;
+    public GameObject endGame;
     public float tempoEntreWaves;
 
     int quantidadeDeInimigos;
@@ -16,36 +17,57 @@ public class GameManager : MonoBehaviour
     public float MaxX;
     public float MaxZ;
     [Space]
-    public Camera secondCam;
+    Camera secondCam;
 
     int quantidadeZombiesFast;
     int quantidadeZombiesNormal;
     int quantidadeZombiesBig;
-    int wave;
+    public int wave;
 
-    GameObject player;
+    GameObject playerGO;
+    PlayerController player;
+
+    public GameObject playerPrefab;
 
     bool estado;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        score.SetText(PlayerPrefs.GetFloat("HighScore", 0).ToString());
+
+        playerGO = GameObject.FindGameObjectWithTag("Player");
+        player = playerGO.GetComponent<PlayerController>();
+        estado = false;
+        player.isStoreActive = estado;
+        secondCam = GameObject.FindWithTag("SecondCamera").GetComponent<Camera>();
+        secondCam.enabled = estado;
+
         wave = 1;
         quantidadeZombiesNormal = 2;
         quantidadeZombiesFast = 0;
         quantidadeZombiesBig = 0;
-        estado = false;
-        player.GetComponent<PlayerController>().isStoreActive = estado;
-        secondCam.enabled = estado;
+
         StartCoroutine(SpawnWave());
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateScore();
-        Loja();
+        if(playerGO != null)
+        {
+            UpdateScore();
+            Loja();
+        }
+        else
+        {
+            GameObject[] enemys = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach(GameObject enem in enemys)
+            {
+                enem.GetComponent<EnemyCube>().life = 0;
+            }
+            EndGame(true);
+        }
     }
 
     bool FimDeWave()
@@ -71,12 +93,12 @@ public class GameManager : MonoBehaviour
 
     IEnumerator SpawnWave()
     {
-        while (player != null)
+        if(playerGO != null)
         {
             if (estado)
             {
                 loja.SetActive(!estado);
-                player.GetComponent<PlayerController>().isStoreActive = !estado;
+                player.isStoreActive = !estado;
                 secondCam.enabled = !estado;
                 estado = !estado;
             }
@@ -87,26 +109,28 @@ public class GameManager : MonoBehaviour
 
                 yield return new WaitForSeconds(tempoEntreWaves);
             }
-
-            if (wave < 10)
+            if (!FimDeWave())
             {
-                Spawn();
-                quantidadeZombiesNormal++;
+                if (wave < 10)
+                {
+                    Spawn();
+                    quantidadeZombiesNormal++;
+                }
+                else if (wave < 15)
+                {
+                    quantidadeZombiesBig++;
+                    Spawn();
+                    quantidadeZombiesNormal++;
+                }
+                else
+                {
+                    quantidadeZombiesBig++;
+                    quantidadeZombiesFast++;
+                    Spawn();
+                    quantidadeZombiesNormal++;
+                }
+                wave++;
             }
-            else if (wave < 15)
-            {
-                quantidadeZombiesBig++;
-                Spawn();
-                quantidadeZombiesNormal++;
-            }
-            else
-            {
-                quantidadeZombiesBig++;
-                quantidadeZombiesFast++;
-                Spawn();
-                quantidadeZombiesNormal++;
-            }
-            wave++;
         }
     }
 
@@ -117,7 +141,7 @@ public class GameManager : MonoBehaviour
         {
             for (int j = 0; j < quantidades[i]; j++)
             {
-                Instantiate(inimigos[i], Posicao(), Quaternion.Euler(player.transform.rotation.x, player.transform.rotation.y, player.transform.rotation.z));
+                Instantiate(inimigos[i], Posicao(), Quaternion.Euler(playerGO.transform.rotation.x, playerGO.transform.rotation.y, playerGO.transform.rotation.z));
             }
         }
     }
@@ -126,10 +150,10 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.B) && !FimDeWave())
         {
-            player.GetComponentInChildren<Animator>().SetFloat("Turn", 0);
-            player.GetComponentInChildren<Animator>().SetFloat("Forward", 0);
+            playerGO.GetComponentInChildren<Animator>().SetFloat("Turn", 0);
+            playerGO.GetComponentInChildren<Animator>().SetFloat("Forward", 0);
             secondCam.enabled = !estado;
-            player.GetComponent<PlayerController>().isStoreActive = !estado;
+            player.isStoreActive = !estado;
             loja.SetActive(!estado);
             estado = !estado;
         }
@@ -137,6 +161,61 @@ public class GameManager : MonoBehaviour
 
     void UpdateScore()
     {
-        score.SetText("Score: "+player.GetComponent<PlayerController>().score.ToString());
+        score.SetText("Score: " + player.score.ToString());
+    }
+
+    void EndGame(bool est)
+    {
+        score.enabled = !est;
+        endGame.SetActive(est);
+        TextMeshProUGUI[] ui = endGame.GetComponentsInChildren<TextMeshProUGUI>();
+        foreach(TextMeshProUGUI element in ui)
+        {
+            if(element.name == "Score")
+            {
+                element.SetText("SCORE: " + player.score.ToString());
+            }
+            if(element.name == "BestScore")
+            {
+                if (player.score > PlayerPrefs.GetFloat("HighScore", 0))
+                {
+                    PlayerPrefs.SetFloat("HighScore", player.score);
+                    element.SetText("BEST SCORE: " + PlayerPrefs.GetFloat("HighScore").ToString());
+                }
+                else
+                {
+                    element.SetText("BEST SCORE: " + PlayerPrefs.GetFloat("HighScore").ToString());
+                }
+            }
+        }
+    }
+
+    public void Restart()
+    {
+        EndGame(false);
+
+        Instantiate(playerPrefab, transform.position, transform.rotation);
+
+        score.SetText(PlayerPrefs.GetFloat("HighScore", 0).ToString());
+
+        playerGO = GameObject.FindGameObjectWithTag("Player");
+        player = playerGO.GetComponent<PlayerController>();
+        estado = false;
+        player.isStoreActive = estado;
+        secondCam = GameObject.FindWithTag("SecondCamera").GetComponent<Camera>();
+        secondCam.enabled = estado;
+
+        wave = 1;
+        quantidadeZombiesNormal = 2;
+        quantidadeZombiesFast = 0;
+        quantidadeZombiesBig = 0;
+
+        GameObject[] enemys = GameObject.FindGameObjectsWithTag("Dead");
+        foreach (GameObject enemy in enemys)
+        {
+            Destroy(enemy);
+        }
+
+        StartCoroutine(SpawnWave());
     }
 }
