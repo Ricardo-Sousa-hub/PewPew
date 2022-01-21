@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
         vertical = vertical * Time.deltaTime * moveSpeed;
 
         movement = new Vector3(horizontal, 0, vertical);
-        transform.Translate(movement, Space.World); //Space world, em relação ao mundo
+        transform.Translate(movement, Space.World); //Space world, em relaï¿½ï¿½o ao mundo
 
         Vector3 local = transform.InverseTransformDirection(movement); // passar movement do mundo para local
         Animacoes(local.z, local.x);
@@ -119,7 +119,7 @@ public class PlayerController : MonoBehaviour
         {
             case "1":
                 gunsImage[armaSelecionada] = gunsImage[armaSelecionada].GetComponent<Image>();
-                gunsImage[armaSelecionada].color = new Color(gunsImage[armaSelecionada].color.r, gunsImage[armaSelecionada].color.g, gunsImage[armaSelecionada].color.b, 0.1f);
+                gunsImage[armaSelecionada].color = new Color(gunsImage[armaSelecionada].color.r, gunsImage[armaSelecionada].color.g, gunsImage[armaSelecionada].color.b, 0.25f);
                 guns[armaSelecionada].SetActive(false);
 
                 guns[0].SetActive(true);
@@ -131,7 +131,7 @@ public class PlayerController : MonoBehaviour
                 if (armasDesbloqueadas[1])
                 {
                     gunsImage[armaSelecionada] = gunsImage[armaSelecionada].GetComponent<Image>();
-                    gunsImage[armaSelecionada].color = new Color(gunsImage[armaSelecionada].color.r, gunsImage[armaSelecionada].color.g, gunsImage[armaSelecionada].color.b, 0.1f);
+                    gunsImage[armaSelecionada].color = new Color(gunsImage[armaSelecionada].color.r, gunsImage[armaSelecionada].color.g, gunsImage[armaSelecionada].color.b, 0.25f);
                     guns[armaSelecionada].SetActive(false);
 
                     guns[1].SetActive(true);
@@ -144,7 +144,7 @@ public class PlayerController : MonoBehaviour
                 if (armasDesbloqueadas[2])
                 {
                     gunsImage[armaSelecionada] = gunsImage[armaSelecionada].GetComponent<Image>();
-                    gunsImage[armaSelecionada].color = new Color(gunsImage[armaSelecionada].color.r, gunsImage[armaSelecionada].color.g, gunsImage[armaSelecionada].color.b, 0.1f);
+                    gunsImage[armaSelecionada].color = new Color(gunsImage[armaSelecionada].color.r, gunsImage[armaSelecionada].color.g, gunsImage[armaSelecionada].color.b, 0.25f);
                     guns[armaSelecionada].SetActive(false);
 
                     guns[2].SetActive(true);
@@ -157,7 +157,7 @@ public class PlayerController : MonoBehaviour
                 if (armasDesbloqueadas[3])
                 {
                     gunsImage[armaSelecionada] = gunsImage[armaSelecionada].GetComponent<Image>();
-                    gunsImage[armaSelecionada].color = new Color(gunsImage[armaSelecionada].color.r, gunsImage[armaSelecionada].color.g, gunsImage[armaSelecionada].color.b, 0.1f);
+                    gunsImage[armaSelecionada].color = new Color(gunsImage[armaSelecionada].color.r, gunsImage[armaSelecionada].color.g, gunsImage[armaSelecionada].color.b, 0.25f);
                     guns[armaSelecionada].SetActive(false);
 
                     guns[3].SetActive(true);
@@ -170,7 +170,7 @@ public class PlayerController : MonoBehaviour
                 if (armasDesbloqueadas[4])
                 {
                     gunsImage[armaSelecionada] = gunsImage[armaSelecionada].GetComponent<Image>();
-                    gunsImage[armaSelecionada].color = new Color(gunsImage[armaSelecionada].color.r, gunsImage[armaSelecionada].color.g, gunsImage[armaSelecionada].color.b, 0.1f);
+                    gunsImage[armaSelecionada].color = new Color(gunsImage[armaSelecionada].color.r, gunsImage[armaSelecionada].color.g, gunsImage[armaSelecionada].color.b, 0.25f);
                     guns[armaSelecionada].SetActive(false);
 
                     guns[4].SetActive(true);
@@ -183,12 +183,12 @@ public class PlayerController : MonoBehaviour
                 if (armasDesbloqueadas[5])
                 {
                     gunsImage[armaSelecionada] = gunsImage[armaSelecionada].GetComponent<Image>();
-                    gunsImage[armaSelecionada].color = new Color(gunsImage[armaSelecionada].color.r, gunsImage[armaSelecionada].color.g, gunsImage[armaSelecionada].color.b, 0.1f);
+                    gunsImage[armaSelecionada].color = new Color(gunsImage[armaSelecionada].color.r, gunsImage[armaSelecionada].color.g, gunsImage[armaSelecionada].color.b, 0.25f);
                     guns[armaSelecionada].SetActive(false);
 
                     guns[5].SetActive(true);
-                    gunsImage[4] = gunsImage[4].GetComponent<Image>();
-                    gunsImage[4].color = new Color(gunsImage[4].color.r, gunsImage[4].color.g, gunsImage[4].color.b, 1);
+                    gunsImage[5] = gunsImage[5].GetComponent<Image>();
+                    gunsImage[5].color = new Color(gunsImage[5].color.r, gunsImage[5].color.g, gunsImage[5].color.b, 1);
                     armaSelecionada = 5;
                 }
                 break;
