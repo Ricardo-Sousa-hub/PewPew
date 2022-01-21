@@ -37,13 +37,13 @@ public class BulletMove : MonoBehaviour
         }
         else
         {
-            if(gameObject.tag == "SniperBullet")
+            if(gameObject.tag == "SniperBullet" && other.CompareTag("Enemy"))
             {
-                if (counter >= QuantidadeDeZombiesMax)
+                if (counter < QuantidadeDeZombiesMax)
                 {
                     other.GetComponent<EnemyCube>().life = 0;
+                    counter++;
                 }
-                else counter++;
             }
             if(gameObject.tag == "Granade")
             {
@@ -54,10 +54,18 @@ public class BulletMove : MonoBehaviour
                 foreach(GameObject enemy in inimigos)
                 {
                     float distance = Vector3.Distance(gameObject.transform.position, enemy.transform.position);
-                    if (distance <= RaioDeExplosao)
+                    if (distance <= RaioDeExplosao/3)
                     {
                         //enemy.GetComponent<Rigidbody>().AddExplosionForce(1, transform.position, RaioDeExplosao);
-                        enemy.GetComponent<EnemyCube>().life = 0;
+                        enemy.GetComponent<EnemyCube>().life -= damage;
+                    }
+                    else if(distance <= RaioDeExplosao/2)
+                    {
+                        enemy.GetComponent<EnemyCube>().life -= damage/2;
+                    }
+                    else if(distance <= RaioDeExplosao)
+                    {
+                        enemy.GetComponent<EnemyCube>().life -= 50;
                     }
                 }
             }
