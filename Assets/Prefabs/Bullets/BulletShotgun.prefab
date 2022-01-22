@@ -162,11 +162,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 30
-  damage: 5
+  damage: 20
   QuantidadeDeZombiesMax: 0
   RaioDeExplosao: 0
   explosion: {fileID: 0}
-  isShootgun: 0
 --- !u!96 &3159183756400702936
 TrailRenderer:
   serializedVersion: 2

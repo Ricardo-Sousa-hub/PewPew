@@ -16,7 +16,6 @@ public class EnemyCube : MonoBehaviour
     public GameObject bullet1;
     [Space]
     public GameObject sniperBullet;
-    public int maxZombiesPerfurar;
     [Space]
     public float life;
     public float damageArea;
