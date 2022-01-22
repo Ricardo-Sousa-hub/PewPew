@@ -44,7 +44,10 @@ public class EnemyCube : MonoBehaviour
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
         cam = Camera.main;
-        health.value = 100;
+
+        health.maxValue = life;
+        health.value = life;
+        
         capsule = GetComponent<CapsuleCollider>();
     }
 
