@@ -13,8 +13,6 @@ public class BulletMove : MonoBehaviour
 
     public GameObject explosion;
 
-    public bool isShootgun;
-
     int counter;
 
     // Start is called before the first frame update
