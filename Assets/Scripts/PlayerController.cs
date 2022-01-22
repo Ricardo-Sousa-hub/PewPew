@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     [Space]
     public List<Image> gunsImage;
     [Space]
-    public int[] maxAmmo;
+    //public int[] maxAmmo;
     public int[] precoArmas;
 
     float nextFire;
@@ -36,11 +36,22 @@ public class PlayerController : MonoBehaviour
 
     public bool isStoreActive;
 
+    [Space]
+    public int pelletCount;
+    public float spreadAngle;
+    //shootspawn
+    List<Quaternion> pellets;
+
     // Start is called before the first frame update
     void Start()
     {
         score = 0;
         armaSelecionada = 0;
+    }
+
+    void Awake()
+    {
+        pellets = new List<Quaternion>(new Quaternion[pelletCount]);
     }
 
 
@@ -89,7 +100,7 @@ public class PlayerController : MonoBehaviour
         vertical = vertical * Time.deltaTime * moveSpeed;
 
         movement = new Vector3(horizontal, 0, vertical);
-        transform.Translate(movement, Space.World); //Space world, em relaï¿½ï¿½o ao mundo
+        transform.Translate(movement, Space.World); //Space world, em relação ao mundo
 
         Vector3 local = transform.InverseTransformDirection(movement); // passar movement do mundo para local
         Animacoes(local.z, local.x);
@@ -192,6 +203,19 @@ public class PlayerController : MonoBehaviour
                     armaSelecionada = 5;
                 }
                 break;
+            case "7":
+                if (armasDesbloqueadas[6])
+                {
+                    gunsImage[armaSelecionada] = gunsImage[armaSelecionada].GetComponent<Image>();
+                    gunsImage[armaSelecionada].color = new Color(gunsImage[armaSelecionada].color.r, gunsImage[armaSelecionada].color.g, gunsImage[armaSelecionada].color.b, 0.25f);
+                    guns[armaSelecionada].SetActive(false);
+
+                    guns[6].SetActive(true);
+                    gunsImage[6] = gunsImage[6].GetComponent<Image>();
+                    gunsImage[6].color = new Color(gunsImage[6].color.r, gunsImage[6].color.g, gunsImage[6].color.b, 1);
+                    armaSelecionada = 6;
+                }
+                break;
         }
     }
 
@@ -202,12 +226,32 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButton("Fire1") && Time.time > nextFire && (ammoByType[armaSelecionada] != 0 || armaSelecionada == 0))
         {
             nextFire = Time.time + gun.fireRate;
-            Instantiate(bulletsByType[armaSelecionada], shootSpawn.position, shootSpawn.rotation); //Quaternion.Euler(x, y, z) porque o prefab estava a spawnar com a rotacao 0,0,0
+            if (gun.isShotgun)
+            {
+                ShootgunShoot();
+            }
+            else
+            {
+                Instantiate(bulletsByType[armaSelecionada], shootSpawn.position, shootSpawn.rotation); //Quaternion.Euler(x, y, z) porque o prefab estava a spawnar com a rotacao 0,0,0
+            }
             
             if (armaSelecionada != 0)
             {
                 ammoByType[armaSelecionada] = ammoByType[armaSelecionada] - 1;
             }
+        }
+    }
+
+    void ShootgunShoot()
+    {
+        int i = 0;
+        foreach(Quaternion quat in pellets.ToArray())
+        {
+            pellets[i] = Random.rotation;
+            GameObject p = Instantiate(bulletsByType[armaSelecionada], shootSpawn.position, shootSpawn.rotation);
+            p.transform.rotation = Quaternion.RotateTowards(p.transform.rotation, pellets[i], spreadAngle);
+            p.GetComponent<Rigidbody>().AddForce(p.transform.right * bulletsByType[armaSelecionada].GetComponent<BulletMove>().speed);
+            i++;
         }
     }
 
@@ -217,12 +261,12 @@ public class PlayerController : MonoBehaviour
         {
             score -= precoArmas[arma];
             armasDesbloqueadas[arma] = true;
-            ammoByType[arma] = maxAmmo[arma];
+            ammoByType[arma] = guns[arma].GetComponent<Gun>().maxAmmo;
         }
-        else if(score >= (precoArmas[arma] / 2) && armasDesbloqueadas[arma] && ammoByType[arma] < maxAmmo[arma])
+        else if(score >= (precoArmas[arma] / 2) && armasDesbloqueadas[arma] && ammoByType[arma] < guns[arma].GetComponent<Gun>().maxAmmo)
         {
             score -= (precoArmas[arma] / 2);
-            ammoByType[arma] = maxAmmo[arma];
+            ammoByType[arma] = guns[arma].GetComponent<Gun>().maxAmmo;
         }
     }
 

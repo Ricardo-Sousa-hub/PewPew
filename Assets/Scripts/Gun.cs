@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
+    public bool isShotgun;
     public float fireRate;
-    public float shootSpread;
+    public int maxAmmo;
 
     // Start is called before the first frame update
     void Start()

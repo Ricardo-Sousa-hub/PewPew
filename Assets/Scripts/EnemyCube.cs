@@ -8,11 +8,13 @@ using TMPro;
 
 public class EnemyCube : MonoBehaviour
 {
-    public GameObject redBullet;
     public GameObject bullet;
+    public GameObject redBullet;
+    public GameObject shootgunBullet;
     public GameObject greenBullet;
     public GameObject granade;
     public GameObject bullet1;
+    [Space]
     public GameObject sniperBullet;
     public int maxZombiesPerfurar;
     [Space]
@@ -95,13 +97,16 @@ public class EnemyCube : MonoBehaviour
                     life -= bullet.GetComponent<BulletMove>().damage;
                     Destroy(other.gameObject);
                     break;
-
                 case "RedBullet":
                     ShowFloatingText(redBullet.GetComponent<BulletMove>().damage);
                     life -= redBullet.GetComponent<BulletMove>().damage;
                     Destroy(other.gameObject);
                     break;
-
+                case "BulletShotgun":
+                    ShowFloatingText(shootgunBullet.GetComponent<BulletMove>().damage);
+                    life -= shootgunBullet.GetComponent<BulletMove>().damage;
+                    Destroy(other.gameObject);
+                    break;
                 case "GreenBullet":
                     ShowFloatingText(greenBullet.GetComponent<BulletMove>().damage);
                     life -= greenBullet.GetComponent<BulletMove>().damage;

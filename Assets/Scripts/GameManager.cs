@@ -28,8 +28,6 @@ public class GameManager : MonoBehaviour
     GameObject playerGO;
     PlayerController player;
 
-    public GameObject playerPrefab;
-
     bool estado;
 
     // Start is called before the first frame update

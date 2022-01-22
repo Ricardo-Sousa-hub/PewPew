@@ -2336,9 +2336,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77596e6ff2df68346a053c9a98e880b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  redBullet: {fileID: 5594670013727557892, guid: 6938a8299ec482f458ab02614ffe0d57,
+  bullet: {fileID: 5594670013727557892, guid: 6938a8299ec482f458ab02614ffe0d57, type: 3}
+  redBullet: {fileID: 5594670013727557892, guid: bde19480a1035b84b8ec3aef25464bde,
     type: 3}
-  bullet: {fileID: 5594670013727557892, guid: bde19480a1035b84b8ec3aef25464bde, type: 3}
+  shootgunBullet: {fileID: 9014796064983849510, guid: 02db1b29587240d4480f65d2976f8b04,
+    type: 3}
   greenBullet: {fileID: 5594670013727557892, guid: 68662935c45de1b46aac38127f2a07b6,
     type: 3}
   granade: {fileID: 2967243107293020617, guid: 2600df23399740c4b90fad22eb4d6a2d, type: 3}

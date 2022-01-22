@@ -7,11 +7,16 @@ public class BulletMove : MonoBehaviour
     private Rigidbody rb;
     public float speed;
     public float damage;
-    int counter;
+
     public int QuantidadeDeZombiesMax;
     public float RaioDeExplosao;
 
     public GameObject explosion;
+
+    public bool isShootgun;
+
+    int counter;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +28,7 @@ public class BulletMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gameObject.tag == "Sniper" && counter >= QuantidadeDeZombiesMax)
+        if(gameObject.tag == "SniperBullet" && counter >= QuantidadeDeZombiesMax)
         {
             Destroy(gameObject);
         }
@@ -68,6 +73,7 @@ public class BulletMove : MonoBehaviour
                         enemy.GetComponent<EnemyCube>().life -= 50;
                     }
                 }
+                Destroy(gameObject);
             }
         }
     }
