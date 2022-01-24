@@ -1600,7 +1600,6 @@ MonoBehaviour:
   MaxX: 14
   MaxZ: 19
   wave: 0
-  nightMode: 1
   sun: {fileID: 717163294}
   luzes:
   - {fileID: 1675084662}
@@ -5528,7 +5527,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1714980031}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 519701744}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: LoadMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1714980031
 MonoBehaviour:
   m_ObjectHideFlags: 0

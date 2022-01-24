@@ -29,14 +29,15 @@ public class GameManager : MonoBehaviour
     PlayerController player;
 
     bool estado;
-    public bool nightMode;
+    int nightMode;
     public Light sun;
     public List<Light> luzes;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (nightMode)
+        nightMode = PlayerPrefs.GetInt("Modo");
+        if (nightMode == 0)
         {
             sun.enabled = false;
             foreach(Light light in luzes)
@@ -219,5 +220,10 @@ public class GameManager : MonoBehaviour
         }
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void LoadMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }
