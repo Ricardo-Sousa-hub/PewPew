@@ -29,10 +29,22 @@ public class GameManager : MonoBehaviour
     PlayerController player;
 
     bool estado;
+    public bool nightMode;
+    public Light sun;
+    public List<Light> luzes;
 
     // Start is called before the first frame update
     void Start()
     {
+        if (nightMode)
+        {
+            sun.enabled = false;
+            foreach(Light light in luzes)
+            {
+                light.GetComponent<Animation>().enabled = false;
+            }
+        }
+
         score.SetText(PlayerPrefs.GetFloat("HighScore", 0).ToString());
 
         playerGO = GameObject.FindGameObjectWithTag("Player");

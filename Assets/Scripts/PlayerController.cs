@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,10 +17,10 @@ public class PlayerController : MonoBehaviour
     public List<bool> armasDesbloqueadas;
     public List<int> ammoByType;
     public List<GameObject> bulletsByType;
+    public List<TextMeshProUGUI> ammoText;
     [Space]
     public List<Image> gunsImage;
     [Space]
-    //public int[] maxAmmo;
     public int[] precoArmas;
 
     float nextFire;
@@ -192,7 +193,8 @@ public class PlayerController : MonoBehaviour
 
             if (armaSelecionada != 0)
             {
-                ammoByType[armaSelecionada] = ammoByType[armaSelecionada] - 1;
+                ammoByType[armaSelecionada] -= 1;
+                ammoText[armaSelecionada].SetText(ammoByType[armaSelecionada].ToString());
             }
         }
     }
@@ -217,12 +219,14 @@ public class PlayerController : MonoBehaviour
             score -= precoArmas[arma];
             armasDesbloqueadas[arma] = true;
             TrocarDeArma(arma);
-            ammoByType[arma] = guns[arma].GetComponent<Gun>().maxAmmo;
+            ammoByType[arma] = guns[arma].GetComponent<Gun>().startAmmo;
+            ammoText[arma].SetText(guns[arma].GetComponent<Gun>().startAmmo.ToString());
         }
-        else if(score >= (precoArmas[arma] / 2) && armasDesbloqueadas[arma] && ammoByType[arma] < guns[arma].GetComponent<Gun>().maxAmmo)
+        else if(score >= (precoArmas[arma] / 2) && armasDesbloqueadas[arma])
         {
             score -= (precoArmas[arma] / 2);
-            ammoByType[arma] = guns[arma].GetComponent<Gun>().maxAmmo;
+            ammoByType[arma] += 100;
+            ammoText[arma].SetText(guns[arma].GetComponent<Gun>().startAmmo.ToString());
         }
     }
 
