@@ -8,13 +8,13 @@ TagManager:
   - Bullet
   - RedBullet
   - GreenBullet
-  - Granade
   - SniperBullet
   - Enemy
   - Bullet1
   - SecondCamera
   - Dead
   - BulletShotgun
+  - Grenade
   layers:
   - Default
   - TransparentFX

@@ -115,7 +115,7 @@ public class EnemyCube : MonoBehaviour
                     Destroy(other.gameObject);
                     break;
 
-                case "Granade":
+                case "Grenade":
                     ShowFloatingText(granade.GetComponent<BulletMove>().damage);
                     break;
                 case "Bullet1":

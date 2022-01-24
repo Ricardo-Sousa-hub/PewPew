@@ -12,6 +12,7 @@ public class BulletMove : MonoBehaviour
     public float RaioDeExplosao;
 
     public GameObject explosion;
+    public AudioSource explosao;
 
     int counter;
 
@@ -48,9 +49,11 @@ public class BulletMove : MonoBehaviour
                     counter++;
                 }
             }
-            if(gameObject.tag == "Granade")
+            if(gameObject.tag == "Grenade")
             {
-                Instantiate(explosion, transform.position, transform.rotation);
+                Vector3 pos = new Vector3(transform.position.x, 0, transform.position.z);
+                Instantiate(explosion, pos, transform.rotation);
+                explosao.Play();
                 List<GameObject> inimigos = new List<GameObject> ();
                 inimigos.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
                 

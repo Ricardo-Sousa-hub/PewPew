@@ -166,6 +166,7 @@ MonoBehaviour:
   QuantidadeDeZombiesMax: 0
   RaioDeExplosao: 0
   explosion: {fileID: 0}
+  explosao: {fileID: 0}
 --- !u!96 &3159183756400702936
 TrailRenderer:
   serializedVersion: 2

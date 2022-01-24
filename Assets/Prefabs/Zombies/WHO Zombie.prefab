@@ -378,7 +378,6 @@ MonoBehaviour:
   bullet1: {fileID: 822219777738804712, guid: 3c7ea2a322a03d84b941d4c6aa0e4ac5, type: 3}
   sniperBullet: {fileID: 5037203685800972430, guid: 3343a1362b760d04fb5c58a67ccd6e9f,
     type: 3}
-  maxZombiesPerfurar: 2
   life: 400
   damageArea: 1.5
   damage: 40
@@ -387,7 +386,7 @@ MonoBehaviour:
   canvas: {fileID: 3974838992363538570}
   health: {fileID: 3974838993262249304}
   text: {fileID: 8547361651895295263, guid: 66eb0d177f69c9441a3102d4005a1c56, type: 3}
-  pontos: 100
+  pontos: 50
 --- !u!195 &3974838993403531751
 NavMeshAgent:
   m_ObjectHideFlags: 0

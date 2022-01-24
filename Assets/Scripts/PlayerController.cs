@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
 
     Vector3 movement;
     Vector3 lookPos;
-
+    [Space]
     public Animator animator;
     [Space]
     public List<GameObject> guns;
@@ -25,15 +25,15 @@ public class PlayerController : MonoBehaviour
     float nextFire;
     [Space]
     public Transform shootSpawn;
-
+    [Space]
     int armaSelecionada;
 
     public float life;
 
     Vector3 lookDir;
-
+    [Space]
     public float score;
-
+    [Space]
     public bool isStoreActive;
 
     [Space]
@@ -42,9 +42,13 @@ public class PlayerController : MonoBehaviour
     //shootspawn
     List<Quaternion> pellets;
 
+    public List<AudioClip> audiosDisparos;
+    AudioSource audioDisparo;
+
     // Start is called before the first frame update
     void Start()
     {
+        audioDisparo = GetComponent<AudioSource>();
         score = 0;
         armaSelecionada = 0;
     }
@@ -173,6 +177,9 @@ public class PlayerController : MonoBehaviour
         Gun gun = guns[armaSelecionada].GetComponent<Gun>();
         if (Input.GetButton("Fire1") && Time.time > nextFire && (ammoByType[armaSelecionada] != 0 || armaSelecionada == 0))
         {
+            audioDisparo.clip = audiosDisparos[armaSelecionada];
+            audioDisparo.Play();
+
             nextFire = Time.time + gun.fireRate;
             if (gun.isShotgun)
             {
@@ -182,7 +189,7 @@ public class PlayerController : MonoBehaviour
             {
                 Instantiate(bulletsByType[armaSelecionada], shootSpawn.position, shootSpawn.rotation); //Quaternion.Euler(x, y, z) porque o prefab estava a spawnar com a rotacao 0,0,0
             }
-            
+
             if (armaSelecionada != 0)
             {
                 ammoByType[armaSelecionada] = ammoByType[armaSelecionada] - 1;

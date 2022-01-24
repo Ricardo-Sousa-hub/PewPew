@@ -106,6 +106,7 @@ MonoBehaviour:
   QuantidadeDeZombiesMax: 2
   RaioDeExplosao: 0
   explosion: {fileID: 0}
+  explosao: {fileID: 0}
 --- !u!136 &793587512510751874
 CapsuleCollider:
   m_ObjectHideFlags: 0

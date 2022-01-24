@@ -2280,7 +2280,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5463969034342568033}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -1.8, y: 0, z: 10.6}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2303,7 +2303,7 @@ CapsuleCollider:
   m_Radius: 0.5953066
   m_Height: 1.9666038
   m_Direction: 1
-  m_Center: {x: -9.26887e-12, y: 0.9833019, z: 0.09530657}
+  m_Center: {x: 0, y: 0.9833019, z: 0.09530657}
 --- !u!95 &5121299980529970484
 Animator:
   serializedVersion: 4
@@ -2347,7 +2347,6 @@ MonoBehaviour:
   bullet1: {fileID: 822219777738804712, guid: 3c7ea2a322a03d84b941d4c6aa0e4ac5, type: 3}
   sniperBullet: {fileID: 5037203685800972430, guid: 3343a1362b760d04fb5c58a67ccd6e9f,
     type: 3}
-  maxZombiesPerfurar: 2
   life: 100
   damageArea: 1.7
   damage: 20
@@ -2356,7 +2355,7 @@ MonoBehaviour:
   canvas: {fileID: 5121299980408970483}
   health: {fileID: 5121299979775354127}
   text: {fileID: 8547361651895295263, guid: 66eb0d177f69c9441a3102d4005a1c56, type: 3}
-  pontos: 10
+  pontos: 20
 --- !u!195 &5121299980529970487
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2367,7 +2366,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.42
-  m_Speed: 2
+  m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
