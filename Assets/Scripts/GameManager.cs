@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI score;
     public GameObject endGame;
     public float tempoEntreWaves;
+    public TextMeshProUGUI timer;
+    float time;
 
     int quantidadeDeInimigos;
     [Space]
@@ -36,6 +38,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        time = tempoEntreWaves;
+
         Cursor.visible = false;
 
         nightMode = PlayerPrefs.GetInt("Modo");
@@ -72,6 +76,7 @@ public class GameManager : MonoBehaviour
         {
             UpdateScore();
             Loja();
+            Timer();
         }
         else
         {
@@ -89,10 +94,13 @@ public class GameManager : MonoBehaviour
         quantidadeDeInimigos = GameObject.FindGameObjectsWithTag("Enemy").Length;
         if (quantidadeDeInimigos == 0)
         {
+            timer.enabled = true;
             return false;
         }
         else
         {
+            timer.enabled = false;
+            time = tempoEntreWaves;
             return true;
         }
     }
@@ -117,10 +125,14 @@ public class GameManager : MonoBehaviour
                 estado = !estado;
             }
 
+            if(wave == 1)
+            {
+                yield return new WaitForSeconds(5);
+            }
+
             if (wave != 1)
             {
                 yield return new WaitWhile(FimDeWave);
-
                 yield return new WaitForSeconds(tempoEntreWaves);
             }
             if (!FimDeWave())
@@ -228,5 +240,18 @@ public class GameManager : MonoBehaviour
     public void LoadMenu()
     {
         SceneManager.LoadScene(0);
+    }
+
+    void Timer()
+    {
+        if(time > 0 && !FimDeWave() && wave > 1)
+        {
+            time -= Time.deltaTime;
+            timer.SetText(Mathf.FloorToInt(time % 60).ToString());
+        }
+        else
+        {
+            timer.SetText("");
+        }
     }
 }
