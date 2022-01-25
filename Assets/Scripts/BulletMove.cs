@@ -53,7 +53,6 @@ public class BulletMove : MonoBehaviour
             {
                 Vector3 pos = new Vector3(transform.position.x, 0, transform.position.z);
                 Instantiate(explosion, pos, transform.rotation);
-                explosao.Play();
                 List<GameObject> inimigos = new List<GameObject> ();
                 inimigos.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
                 

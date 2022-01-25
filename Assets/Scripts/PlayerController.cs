@@ -226,12 +226,13 @@ public class PlayerController : MonoBehaviour
         {
             score -= (precoArmas[arma] / 2);
             ammoByType[arma] += 100;
-            ammoText[arma].SetText(guns[arma].GetComponent<Gun>().startAmmo.ToString());
+            ammoText[arma].SetText(ammoByType[arma].ToString());
         }
     }
 
     public void Health()
     {
+        score -= 50;
         life = 100;
     }
 

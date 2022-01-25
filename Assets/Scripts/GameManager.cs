@@ -36,6 +36,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = false;
+
         nightMode = PlayerPrefs.GetInt("Modo");
         if (nightMode == 0)
         {
@@ -163,8 +165,9 @@ public class GameManager : MonoBehaviour
 
     void Loja()
     {
-        if (Input.GetKeyDown(KeyCode.B) && !FimDeWave())
+        if (Input.GetKeyDown(KeyCode.B) && !FimDeWave() || (Input.GetKeyDown(KeyCode.Escape) && loja.activeInHierarchy))
         {
+            Cursor.visible = !estado;
             playerGO.GetComponentInChildren<Animator>().SetFloat("Turn", 0);
             playerGO.GetComponentInChildren<Animator>().SetFloat("Forward", 0);
             secondCam.enabled = !estado;

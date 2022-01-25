@@ -20,10 +20,8 @@ public class FollowPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(manager.wave == 2)
-        {
-            player = GameObject.FindGameObjectWithTag("Player");
-        }
+        
+        player = GameObject.FindGameObjectWithTag("Player");
         //transform.position = Vector3.Lerp(transform.position, player.transform.position + targetOS, speedCamera * Time.deltaTime);
         if(player != null)
         {
