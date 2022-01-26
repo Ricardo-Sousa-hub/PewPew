@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
     {
         time = tempoEntreWaves;
 
-        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
 
         nightMode = PlayerPrefs.GetInt("Modo");
         if (nightMode == 0)
