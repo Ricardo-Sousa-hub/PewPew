@@ -110,7 +110,7 @@ public class PlayerController : MonoBehaviour
         vertical = vertical * Time.deltaTime * moveSpeed;
 
         movement = new Vector3(horizontal, 0, vertical);
-        transform.Translate(movement, Space.World); //Space world, em relação ao mundo
+        transform.Translate(movement, Space.World); //Space world, em relaï¿½ï¿½o ao mundo
 
         Vector3 local = transform.InverseTransformDirection(movement); // passar movement do mundo para local
         Animacoes(local.z, local.x);
@@ -237,8 +237,11 @@ public class PlayerController : MonoBehaviour
 
     public void Health()
     {
-        score -= 50;
-        life = 100;
+        if(score >= 50)
+        {
+            score -= 50;
+            life = 100;
+        }
     }
 
     public void AddScore(int pontos)
