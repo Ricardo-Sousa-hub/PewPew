@@ -46,9 +46,12 @@ public class PlayerController : MonoBehaviour
     public List<AudioClip> audiosDisparos;
     AudioSource audioDisparo;
 
+    public Slider healthbar;
+
     // Start is called before the first frame update
     void Start()
     {
+        healthbar.value = 100;
         audioDisparo = GetComponent<AudioSource>();
         score = 0;
         armaSelecionada = 0;
@@ -83,6 +86,8 @@ public class PlayerController : MonoBehaviour
 
     void verificarVida()
     {
+        healthbar.value = life;
+
         if(life <= 0)
         {
             Destroy(gameObject);

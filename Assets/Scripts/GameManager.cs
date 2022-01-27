@@ -179,7 +179,6 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.B) && !FimDeWave() || (Input.GetKeyDown(KeyCode.Escape) && loja.activeInHierarchy))
         {
-            Cursor.visible = !estado;
             playerGO.GetComponentInChildren<Animator>().SetFloat("Turn", 0);
             playerGO.GetComponentInChildren<Animator>().SetFloat("Forward", 0);
             secondCam.enabled = !estado;
