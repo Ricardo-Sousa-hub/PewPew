@@ -36,6 +36,11 @@ public class EnemyCube : MonoBehaviour
     Camera cam;
     CapsuleCollider capsule;
 
+    public AudioSource dano;
+    public List<AudioClip> dor_de_cabeca;
+    public AudioSource som_de_zombie;
+    public List<AudioClip> zombie;
+
     bool isDead = false;
 
     // Start is called before the first frame update
@@ -56,10 +61,12 @@ public class EnemyCube : MonoBehaviour
     {
         if (life > 0 && player != null)
         {
+            Som();
             PerseguirJogador();
             PosicaoDaHealthbar();
             HealthBar();
             IniciarAnimacao();
+            
         }
         else
         {
@@ -174,6 +181,9 @@ public class EnemyCube : MonoBehaviour
         {
             cam.GetComponent<ShakeCam>().Shake();
             player.GetComponent<PlayerController>().life -= damage;
+            int index = Random.Range(0, dor_de_cabeca.Count);
+            dano.clip = dor_de_cabeca[index];
+            dano.Play();
         }
     }
 
@@ -216,4 +226,16 @@ public class EnemyCube : MonoBehaviour
         string damageTaken = "-" + damage;
         go.GetComponent<TextMesh>().text = damageTaken;
     }
+
+    void Som()
+    {
+        if (!som_de_zombie.isPlaying)
+        {
+            int Index = Random.Range(0, zombie.Count);
+            som_de_zombie.clip = zombie[Index];
+            float tempo = Random.Range(1, 4);
+            som_de_zombie.PlayDelayed(tempo);
+        }
+    }
+
 }
