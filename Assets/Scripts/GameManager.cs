@@ -20,7 +20,9 @@ public class GameManager : MonoBehaviour
     public List<GameObject> inimigos;
     [Space]
     public float MaxX;
+    public float MinX;
     public float MaxZ;
+    public float MinZ;
     [Space]
     Camera secondCam;
 
@@ -77,9 +79,9 @@ public class GameManager : MonoBehaviour
         if(playerGO != null)
         {
             UpdateScore();
+            PauseMenu();
             Loja();
             Timer();
-            PauseMenu();
         }
         else
         {
@@ -110,8 +112,8 @@ public class GameManager : MonoBehaviour
 
     Vector3 Posicao()
     {
-        float x = Random.Range(-MaxX, MaxX);
-        float z = Random.Range(-MaxZ, MaxZ);
+        float x = Random.Range(MinX, MaxX);
+        float z = Random.Range(MinZ, MaxZ);
 
         return new Vector3(x, 0, z);
     }
@@ -193,7 +195,7 @@ public class GameManager : MonoBehaviour
 
     void PauseMenu()
     {
-        if(Input.GetKeyDown(KeyCode.Escape) && !loja.activeInHierarchy)
+        if(!loja.activeInHierarchy && Input.GetKeyDown(KeyCode.Escape))
         {
             pauseMenu.SetActive(!player.isPaused);
             if (player.isPaused)
