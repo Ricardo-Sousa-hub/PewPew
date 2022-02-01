@@ -20,6 +20,11 @@ public class Menu : MonoBehaviour
 
     int mapa;
 
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+    }
+
     public void LoadMapOptions()
     {
         startMenu.SetActive(false);

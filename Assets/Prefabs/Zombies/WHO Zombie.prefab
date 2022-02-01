@@ -318,7 +318,6 @@ GameObject:
   - component: {fileID: 3974838993403531751}
   - component: {fileID: 873945577}
   - component: {fileID: 3714505082078696490}
-  - component: {fileID: 6498358924984272153}
   m_Layer: 0
   m_Name: WHO Zombie
   m_TagString: Enemy
@@ -389,13 +388,12 @@ MonoBehaviour:
   health: {fileID: 3974838993262249304}
   text: {fileID: 8547361651895295263, guid: 66eb0d177f69c9441a3102d4005a1c56, type: 3}
   pontos: 50
-  dano: {fileID: 6498358924984272153}
+  som_de_zombie: {fileID: 3714505082078696490}
   dor_de_cabeca:
   - {fileID: 8300000, guid: 1c0c0277719766d419fff9e95f5857e7, type: 3}
   - {fileID: 8300000, guid: 5f7867c634179ec418485767a4c460c8, type: 3}
   - {fileID: 8300000, guid: c30043c24335a1d4c861645c7ec75555, type: 3}
   - {fileID: 8300000, guid: 29263f187bdef6f4b878e9e31dc61147, type: 3}
-  som_de_zombie: {fileID: 3714505082078696490}
   zombie:
   - {fileID: 8300000, guid: e2edbbe2ec8fca14db71b822a4d2517a, type: 3}
   - {fileID: 8300000, guid: 998cfeddbf62152418ee86b6394d1bdf, type: 3}
@@ -454,102 +452,6 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!82 &6498358924984272153
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3974838993403531550}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

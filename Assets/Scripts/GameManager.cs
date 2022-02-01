@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI timer;
     float time;
 
+    public GameObject pauseMenu;
+
     int quantidadeDeInimigos;
     [Space]
     public List<GameObject> inimigos;
@@ -77,6 +79,7 @@ public class GameManager : MonoBehaviour
             UpdateScore();
             Loja();
             Timer();
+            PauseMenu();
         }
         else
         {
@@ -188,6 +191,23 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void PauseMenu()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape) && !loja.activeInHierarchy)
+        {
+            pauseMenu.SetActive(!player.isPaused);
+            if (player.isPaused)
+            {
+                Time.timeScale = 1f;
+            }
+            else
+            {
+                Time.timeScale = 0.0f;
+            }
+            player.isPaused = !player.isPaused;
+        }
+    }
+
     void UpdateScore()
     {
         score.SetText("Score: " + player.score.ToString());
@@ -236,8 +256,14 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void LoadOptions()
+    {
+
+    }
+
     public void LoadMenu()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(0);
     }
 

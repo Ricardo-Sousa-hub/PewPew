@@ -36,9 +36,8 @@ public class EnemyCube : MonoBehaviour
     Camera cam;
     CapsuleCollider capsule;
 
-    public AudioSource dano;
-    public List<AudioClip> dor_de_cabeca;
     public AudioSource som_de_zombie;
+    public List<AudioClip> dor_de_cabeca;
     public List<AudioClip> zombie;
 
     bool isDead = false;
@@ -182,8 +181,7 @@ public class EnemyCube : MonoBehaviour
             cam.GetComponent<ShakeCam>().Shake();
             player.GetComponent<PlayerController>().life -= damage;
             int index = Random.Range(0, dor_de_cabeca.Count);
-            dano.clip = dor_de_cabeca[index];
-            dano.Play();
+            som_de_zombie.PlayOneShot(dor_de_cabeca[index]);
         }
     }
 
@@ -229,7 +227,7 @@ public class EnemyCube : MonoBehaviour
 
     void Som()
     {
-        if (!som_de_zombie.isPlaying)
+        if (!som_de_zombie.isPlaying && !player.GetComponent<PlayerController>().isPaused)
         {
             int Index = Random.Range(0, zombie.Count);
             som_de_zombie.clip = zombie[Index];

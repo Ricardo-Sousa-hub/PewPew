@@ -14,11 +14,14 @@ public class BulletMove : MonoBehaviour
     public GameObject explosion;
     public AudioSource explosao;
 
+    Camera cam;
+
     int counter;
 
     // Start is called before the first frame update
     void Start()
     {
+        cam = Camera.main;
         counter = 0;
         rb = GetComponent<Rigidbody>();
         rb.velocity = transform.forward * speed;
@@ -51,6 +54,8 @@ public class BulletMove : MonoBehaviour
             }
             if(gameObject.tag == "Grenade")
             {
+                cam.GetComponent<ShakeCam>().Shake();
+
                 Vector3 pos = new Vector3(transform.position.x, 0, transform.position.z);
                 Instantiate(explosion, pos, transform.rotation);
                 List<GameObject> inimigos = new List<GameObject> ();

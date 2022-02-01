@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     public float score;
     [Space]
     public bool isStoreActive;
+    public bool isPaused;
 
     [Space]
     public int pelletCount;
@@ -66,7 +67,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isStoreActive)
+        if (!isStoreActive && !isPaused)
         {
             LookMousePos();
             Shoot();
@@ -78,7 +79,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!isStoreActive)
+        if (!isStoreActive && !isPaused)
         {
             Move();
         }
