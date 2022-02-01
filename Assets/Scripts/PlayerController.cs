@@ -237,9 +237,10 @@ public class PlayerController : MonoBehaviour
 
     public void Health()
     {
-        if(score >= 50)
+        if(score >= 50 && life < 100)
         {
-            score -= 50;
+            healthbar.value = 100;
+            score -= 50; // custo da vida = 50
             life = 100;
         }
     }
