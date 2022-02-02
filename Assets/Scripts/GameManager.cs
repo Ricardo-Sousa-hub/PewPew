@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +16,12 @@ public class GameManager : MonoBehaviour
     float time;
 
     public GameObject pauseMenu;
+    [Space]
+    public GameObject optionsMenu;
+    [Space]
+    public AudioMixer audioMixer;
+    public Slider volume;
+    public TMP_Dropdown quality;
 
     int quantidadeDeInimigos;
     [Space]
@@ -42,10 +50,16 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+        quality.value = PlayerPrefs.GetInt("Quality");
+        QualitySettings.SetQualityLevel(quality.value);
+        
+        volume.value = PlayerPrefs.GetFloat("Volume");
+        audioMixer.SetFloat("Volume", volume.value);
+
         time = tempoEntreWaves;
 
         Cursor.lockState = CursorLockMode.Confined;
-
         nightMode = PlayerPrefs.GetInt("Modo");
         if (nightMode == 0)
         {
@@ -55,9 +69,7 @@ public class GameManager : MonoBehaviour
                 light.GetComponent<Animation>().enabled = false;
             }
         }
-
         score.SetText(PlayerPrefs.GetFloat("HighScore", 0).ToString());
-
         playerGO = GameObject.FindGameObjectWithTag("Player");
         player = playerGO.GetComponent<PlayerController>();
         estado = false;
@@ -82,11 +94,14 @@ public class GameManager : MonoBehaviour
             PauseMenu();
             Loja();
             Timer();
+            
+            SetVolume();
+            SetQuality();
         }
         else
         {
             GameObject[] enemys = GameObject.FindGameObjectsWithTag("Enemy");
-            foreach(GameObject enem in enemys)
+            foreach (GameObject enem in enemys)
             {
                 enem.GetComponent<EnemyCube>().life = 0;
             }
@@ -195,7 +210,7 @@ public class GameManager : MonoBehaviour
 
     void PauseMenu()
     {
-        if(!loja.activeInHierarchy && Input.GetKeyDown(KeyCode.Escape))
+        if(!loja.activeInHierarchy && !optionsMenu.activeInHierarchy && Input.GetKeyDown(KeyCode.Escape))
         {
             pauseMenu.SetActive(!player.isPaused);
             if (player.isPaused)
@@ -260,13 +275,34 @@ public class GameManager : MonoBehaviour
 
     public void LoadOptions()
     {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 0.0f;
+        optionsMenu.SetActive(true);
+    }
 
+    public void SetVolume()
+    {
+        PlayerPrefs.SetFloat("Volume", volume.value);
+        audioMixer.SetFloat("Volume", volume.value);
+    }
+
+    public void SetQuality()
+    {
+        PlayerPrefs.SetInt("Quality", quality.value);
+        QualitySettings.SetQualityLevel(quality.value);
     }
 
     public void LoadMenu()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
+    }
+
+    public void LoadPause()
+    {
+        optionsMenu.SetActive(false);
+        Time.timeScale = 1.0f;
+        pauseMenu.SetActive(true);
     }
 
     void Timer()

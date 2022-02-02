@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using TMPro;
+using UnityEngine.Audio;
 
 public class Menu : MonoBehaviour
 {
-
+    public AudioMixer audioMixer;
+    [Space]
     public Animation anim;
     [Space]
     public GameObject startMenu;
@@ -64,5 +65,19 @@ public class Menu : MonoBehaviour
     {
         options.SetActive(false);
         startMenu.SetActive(true);
+    }
+
+    //Settings
+
+    public void SetVolume(float volume)
+    {
+        PlayerPrefs.SetFloat("Volume", volume);
+        audioMixer.SetFloat("Volume", volume);
+    }
+
+    public void SetQuality(int index)
+    {
+        PlayerPrefs.SetInt("Quality", index);
+        QualitySettings.SetQualityLevel(index);
     }
 }
