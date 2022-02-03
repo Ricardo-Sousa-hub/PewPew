@@ -231,7 +231,7 @@ public class EnemyCube : MonoBehaviour
         {
             int Index = Random.Range(0, zombie.Count);
             som_de_zombie.clip = zombie[Index];
-            float tempo = Random.Range(1, 4);
+            float tempo = Random.Range(10, 120);
             som_de_zombie.PlayDelayed(tempo);
         }
     }
