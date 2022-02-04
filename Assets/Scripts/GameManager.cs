@@ -269,7 +269,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(enemy);
         }
-
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -301,7 +301,7 @@ public class GameManager : MonoBehaviour
     public void LoadPause()
     {
         optionsMenu.SetActive(false);
-        Time.timeScale = 1.0f;
+        Time.timeScale = 0f;
         pauseMenu.SetActive(true);
     }
 
