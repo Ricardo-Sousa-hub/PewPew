@@ -47,6 +47,9 @@ public class GameManager : MonoBehaviour
     public Light sun;
     public List<Light> luzes;
 
+    [Space]
+    public List<TextMeshProUGUI> precos;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -97,6 +100,10 @@ public class GameManager : MonoBehaviour
             
             SetVolume();
             SetQuality();
+            if (loja.activeInHierarchy) //Os valores da loja apenas atualizam se a loja estiver aberta, otimização
+            {
+                UpdatePrecos();
+            }
         }
         else
         {
@@ -315,6 +322,14 @@ public class GameManager : MonoBehaviour
         else
         {
             timer.SetText("");
+        }
+    }
+
+    void UpdatePrecos()
+    {
+        for(int i = 1; i < precos.Count; i++)
+        {
+            precos[i].SetText(player.precoArmasComTaxa[i].ToString());
         }
     }
 }

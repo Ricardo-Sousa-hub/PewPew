@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
     [Space]
     public float cap;
     public float incremento;
-    private List<int> precoArmasComTaxa;
+    public List<int> precoArmasComTaxa;
 
     // Start is called before the first frame update
     void Start()
