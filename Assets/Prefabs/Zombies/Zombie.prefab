@@ -1349,7 +1349,7 @@ MonoBehaviour:
   sniperBullet: {fileID: 5037203685800972430, guid: 3343a1362b760d04fb5c58a67ccd6e9f,
     type: 3}
   life: 100
-  damageArea: 1.7
+  damageArea: 1
   damage: 10
   tempoAteSerDestruido: 10
   enemy: {fileID: 6290440147694032968}
