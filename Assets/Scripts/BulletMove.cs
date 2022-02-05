@@ -75,7 +75,7 @@ public class BulletMove : MonoBehaviour
                     }
                     else if(distance <= RaioDeExplosao)
                     {
-                        enemy.GetComponent<EnemyCube>().life -= 50;
+                        enemy.GetComponent<EnemyCube>().life -= damage / 3;
                     }
                 }
                 Destroy(gameObject);

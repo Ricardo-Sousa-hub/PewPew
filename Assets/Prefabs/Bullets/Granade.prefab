@@ -80,9 +80,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  damage: 200
+  damage: 300
   QuantidadeDeZombiesMax: 0
-  RaioDeExplosao: 5
+  RaioDeExplosao: 7
   explosion: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
   explosao: {fileID: 0}
 --- !u!96 &-2555593002796587933

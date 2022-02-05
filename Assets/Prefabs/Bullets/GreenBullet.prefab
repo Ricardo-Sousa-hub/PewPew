@@ -161,11 +161,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43bb6eb5419fd74409346cf7714f0476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 25
+  speed: 30
   damage: 20
   QuantidadeDeZombiesMax: 0
   RaioDeExplosao: 0
   explosion: {fileID: 0}
+  explosao: {fileID: 0}
 --- !u!96 &-8907103398387565193
 TrailRenderer:
   serializedVersion: 2

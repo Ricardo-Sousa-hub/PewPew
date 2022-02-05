@@ -7,6 +7,7 @@ public class Gun : MonoBehaviour
     public bool isShotgun;
     public float fireRate;
     public int startAmmo;
+    public int buyAmmo;
 
     // Start is called before the first frame update
     void Start()

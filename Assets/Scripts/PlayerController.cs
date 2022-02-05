@@ -49,6 +49,11 @@ public class PlayerController : MonoBehaviour
 
     public Slider healthbar;
 
+    [Space]
+    public float cap;
+    public float incremento;
+    private List<int> precoArmasComTaxa;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,6 +61,8 @@ public class PlayerController : MonoBehaviour
         audioDisparo = GetComponent<AudioSource>();
         score = 0;
         armaSelecionada = 0;
+        precoArmasComTaxa = new List<int>();
+        precoArmasComTaxa.AddRange(precoArmas);
     }
 
     void Awake()
@@ -220,7 +227,7 @@ public class PlayerController : MonoBehaviour
 
     public void DesbloquearArmaAndAmmo(int arma)
     {
-        if(score >= precoArmas[arma] && !armasDesbloqueadas[arma])
+        if (score >= precoArmas[arma] && !armasDesbloqueadas[arma])
         {
             score -= precoArmas[arma];
             armasDesbloqueadas[arma] = true;
@@ -228,11 +235,16 @@ public class PlayerController : MonoBehaviour
             ammoByType[arma] = guns[arma].GetComponent<Gun>().startAmmo;
             ammoText[arma].SetText(guns[arma].GetComponent<Gun>().startAmmo.ToString());
         }
-        else if(score >= (precoArmas[arma] / 2) && armasDesbloqueadas[arma])
+        else if (score >= ((int)(precoArmasComTaxa[arma] / 2)) && armasDesbloqueadas[arma])
         {
-            score -= (precoArmas[arma] / 2);
-            ammoByType[arma] += 100;
+            score -= (precoArmasComTaxa[arma] / 2);
+            ammoByType[arma] += guns[arma].GetComponent<Gun>().buyAmmo;  //quantidade de balas
             ammoText[arma].SetText(ammoByType[arma].ToString());
+
+            if (precoArmasComTaxa[arma] < (cap/50) * precoArmas[arma]) 
+            {
+                precoArmasComTaxa[arma] += (int)(precoArmasComTaxa[arma] * incremento);
+            }
         }
     }
 

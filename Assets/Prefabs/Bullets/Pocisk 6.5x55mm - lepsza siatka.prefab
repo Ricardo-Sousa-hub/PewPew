@@ -103,7 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 40
   damage: 100
-  QuantidadeDeZombiesMax: 2
+  QuantidadeDeZombiesMax: 4
   RaioDeExplosao: 0
   explosion: {fileID: 0}
   explosao: {fileID: 0}
