@@ -175,12 +175,21 @@ public class PlayerController : MonoBehaviour
         if (armasDesbloqueadas[arma])
         {
             gunsImage[armaSelecionada] = gunsImage[armaSelecionada].GetComponent<Image>();
-            gunsImage[armaSelecionada].color = new Color(gunsImage[armaSelecionada].color.r, gunsImage[armaSelecionada].color.g, gunsImage[armaSelecionada].color.b, 0.25f);
+            gunsImage[armaSelecionada].color = new Color(gunsImage[armaSelecionada].color.r, gunsImage[armaSelecionada].color.g, gunsImage[armaSelecionada].color.b, 0.50f);
             guns[armaSelecionada].SetActive(false);
 
             guns[arma].SetActive(true);
             gunsImage[arma] = gunsImage[arma].GetComponent<Image>();
-            gunsImage[arma].color = new Color(gunsImage[arma].color.r, gunsImage[arma].color.g, gunsImage[arma].color.b, 1);
+
+            if(ammoByType[arma] > 0 || arma == 0)
+            {
+                gunsImage[arma].color = new Color(255, 255, 255, 1);
+            }
+            else
+            {
+                gunsImage[arma].color = new Color(255, 0, 0, 1);
+            }
+            
             armaSelecionada = arma;
         }
     }
@@ -209,6 +218,11 @@ public class PlayerController : MonoBehaviour
                 ammoByType[armaSelecionada] -= 1;
                 ammoText[armaSelecionada].SetText(ammoByType[armaSelecionada].ToString());
             }
+
+            if (ammoByType[armaSelecionada] <= 0 && armaSelecionada != 0)
+            {
+                gunsImage[armaSelecionada].color = new Color(255, 0, 0, 1);
+            }
         }
     }
 
@@ -231,19 +245,23 @@ public class PlayerController : MonoBehaviour
         {
             score -= precoArmas[arma];
             armasDesbloqueadas[arma] = true;
-            TrocarDeArma(arma);
             ammoByType[arma] = guns[arma].GetComponent<Gun>().startAmmo;
             ammoText[arma].SetText(guns[arma].GetComponent<Gun>().startAmmo.ToString());
+            
+            TrocarDeArma(arma);
+
+            precoArmasComTaxa[arma] /= 2;
         }
-        else if (score >= ((int)(precoArmasComTaxa[arma] / 2)) && armasDesbloqueadas[arma])
+        else if (score >= precoArmasComTaxa[arma] && armasDesbloqueadas[arma])
         {
-            score -= (precoArmasComTaxa[arma] / 2);
+            score -= precoArmasComTaxa[arma];
             ammoByType[arma] += guns[arma].GetComponent<Gun>().buyAmmo;  //quantidade de balas
             ammoText[arma].SetText(ammoByType[arma].ToString());
 
             if (precoArmasComTaxa[arma] < (cap/50) * precoArmas[arma]) 
             {
                 precoArmasComTaxa[arma] += (int)(precoArmasComTaxa[arma] * incremento);
+                gunsImage[arma].color = new Color(255, 255, 255, 0.5f);
             }
         }
     }

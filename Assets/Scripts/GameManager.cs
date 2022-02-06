@@ -327,9 +327,12 @@ public class GameManager : MonoBehaviour
 
     void UpdatePrecos()
     {
-        for(int i = 1; i < precos.Count; i++)
-        {
-            precos[i].SetText(player.precoArmasComTaxa[i].ToString());
+        int count = 1;
+        for(int i = 0; i < precos.Count; i++)
+        {   
+            precos[i].SetText(player.precoArmasComTaxa[count].ToString());
+            count++;
         }
+        count = 1;
     }
 }
