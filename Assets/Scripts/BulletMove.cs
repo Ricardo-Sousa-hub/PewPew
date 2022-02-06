@@ -30,7 +30,7 @@ public class BulletMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gameObject.tag == "SniperBullet" && counter >= QuantidadeDeZombiesMax)
+        if(counter >= QuantidadeDeZombiesMax)
         {
             Destroy(gameObject);
         }
@@ -46,11 +46,8 @@ public class BulletMove : MonoBehaviour
         {
             if(gameObject.tag == "SniperBullet" && other.CompareTag("Enemy"))
             {
-                if (counter < QuantidadeDeZombiesMax)
-                {
-                    other.GetComponent<EnemyCube>().life = 0;
-                    counter++;
-                }
+                other.GetComponent<EnemyCube>().life = 0;
+                counter++;
             }
             if(gameObject.tag == "Grenade")
             {

@@ -220,7 +220,7 @@ public class EnemyCube : MonoBehaviour
 
     void ShowFloatingText(float damage)
     {
-        var go = Instantiate(text, transform.position, Quaternion.identity, transform);
+        GameObject go = Instantiate(text, transform.position, Quaternion.identity, transform);
         string damageTaken = "-" + damage;
         go.GetComponent<TextMesh>().text = damageTaken;
     }
@@ -235,5 +235,4 @@ public class EnemyCube : MonoBehaviour
             som_de_zombie.PlayDelayed(tempo);
         }
     }
-
 }

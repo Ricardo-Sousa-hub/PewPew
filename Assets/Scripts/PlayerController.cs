@@ -194,7 +194,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
     void Shoot()
     {
         Gun gun = guns[armaSelecionada].GetComponent<Gun>();
