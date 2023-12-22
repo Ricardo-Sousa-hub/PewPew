@@ -1,4 +1,4 @@
-#PewPew
+# PewPew
 
 O PewPew é um jogo de sobrevivência Top-Down shooter onde o jogador tem de dderrotar sucessivas ondes de zombies.
 No intervalo entre cada onde é permitido ao jogador comprar mais munição para as armas, novas armas ou vida, sendo tudo isto possivel graças a um sistema de compra implementado no jogo.
